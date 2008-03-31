@@ -1,0 +1,1 @@
+require 'quote_dialogue'

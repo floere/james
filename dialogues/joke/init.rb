@@ -1,0 +1,1 @@
+require 'joke_dialogue'

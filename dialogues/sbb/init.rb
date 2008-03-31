@@ -1,0 +1,1 @@
+require 'sbb_dialogue'

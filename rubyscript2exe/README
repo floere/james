@@ -1,0 +1,22 @@
+----------------------------------------------------------------
+
+RubyScript2Exe transforms your Ruby script into a standalone,
+compressed Windows, Linux or Mac OS X (Darwin) executable. You
+can look at it as a "compiler". Not in the sense of a
+source-code-to-byte-code compiler, but as a "collector", for it
+collects all necessary files to run your script on an other
+machine: the Ruby script, the Ruby interpreter and the Ruby
+runtime library (stripped down for this script). Anyway, the
+result is the same: a standalone executable (application.exe).
+And that's what we want!
+
+For more information, see
+http://www.erikveen.dds.nl/rubyscript2exe/index.html .
+
+----------------------------------------------------------------
+
+The best way to use Tar2RubyScript is the RB, not this TAR.GZ.
+The latter is just for playing with the internals. Both are
+available on the site.
+
+----------------------------------------------------------------

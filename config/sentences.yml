@@ -1,0 +1,19 @@
+# with this file it is possible to configure your james's core
+# commands are denoted with an exclamation mark
+# it is not possible to use multiple command words
+sleep!: sleep
+return from dialogue!: thank you
+# when james ... he says one of ...
+wakes up:
+  - yes?
+  - sir?
+  - ready!
+  - ok!
+  - tell me!
+  - yes, sir?
+  - your wish is my command.
+  - at your service.
+goes to sleep:
+  - good night!
+  - good bye!
+  - hasta la vista, baby!

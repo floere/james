@@ -1,0 +1,375 @@
+----------------------------------------------------------------
+
+0.5.1 - 06.08.2006
+
+* Fixed a bug when using the big rubyscript2exe.rb (the RBA) as
+  library.
+
+* Fixed a bug in RUBYSCRIPT2EXE.appdir. Added
+  RUBYSCRIPT2EXE.userdir.
+
+* Added RUBYSCRIPT2EXE.rubyw=.
+
+* Added RUBYSCRIPT2EXE.strip=.
+
+* Added RUBYSCRIPT2EXE.appdir and RUBYSCRIPT2EXE.appdir("bin")
+  to ENV["PATH"].
+
+* Added RUBYSCRIPT2EXE.appdir and RUBYSCRIPT2EXE.appdir("lib")
+  to $:.
+
+----------------------------------------------------------------
+
+0.5.0 - 29.07.2006
+
+* Added support for directories.
+
+* Introduced require "rubyscript2exe.rb".
+
+* Added a check for readability in EEE.
+
+* Replaced RUBYSCRIPT2EXE_* by RUBYSCRIPT.*= and
+  RUBYSCRIPT2EXE::* (see application.rb).
+
+* Added RUBYSCRIPT2EXE.appdir(item) and
+  RUBYSCRIPT2EXE.is_compil*?.
+
+* If you already used RubyScript2Exe before, please reread the
+  section "From Inside your Application", since it isn't 100%
+  backwards compatible.
+
+----------------------------------------------------------------
+
+0.4.4 - 28.06.2006
+
+* Fixed a bug concerning "ENV.delete(key)".
+
+----------------------------------------------------------------
+
+0.4.3 - 27.06.2006
+
+* Enhanced the support for RubyGems, again... I now use the
+  real RubyGems, instead of a fake one.
+
+----------------------------------------------------------------
+
+0.4.2 - 08.03.2006
+
+* Got rid of warning "Insecure world writable dir".
+
+* Fixed a bug concerning parameters with quotes and other
+  escapable characters.
+
+* Fixed a bug concerning "Too many open files".
+
+* Fixed a bug concerning spaced parameters on Linux and Darwin.
+
+* More DLL's are found and embedded.
+
+* AllInOneRuby and RubyScript2Exe now work together.
+
+----------------------------------------------------------------
+
+0.4.1 - 03.12.2005
+
+* Fixed a bug concerning multiline parameters.
+
+----------------------------------------------------------------
+
+0.4.0 - 06.08.2005
+
+* Added better error detection and error reporting in EEE.
+
+* Added --eee-info.
+
+* Added RUBYSCRIPT2EXE_TEMPDIR.
+
+* Fixed a bug concerning the variable command which wasn't
+  "declared" in one specific situation.
+
+* Went back to FPC 1.9.8 (from 2.0.0) on Linux, because of some
+  access violations.
+
+* Updated to FPC 1.9.8 (from 1.9.5) on Darwin.
+
+----------------------------------------------------------------
+
+0.3.6 - 14.06.2005
+
+* Fixed a bug concerning spaces in %TEMP%.
+
+----------------------------------------------------------------
+
+0.3.5 - 03.06.2005
+
+* Updated to FreePascal 1.9.8 on Windows, 2.0.0 on Linux and
+  1.9.5 on Darwin.
+
+* The exit code of your script is returned to the calling
+  application/shell.
+
+* Made some information about the environment EEE sets up
+  available to the application, e.g. executable name.
+
+----------------------------------------------------------------
+
+0.3.4 - 21.05.2005
+
+* Added --rubyscript2exe-tk (experimental).
+
+* Added a check for the existence of
+  Config::CONFIG["bindir"]/ruby (RubyScript2Exe doesn't work
+  without it...).
+
+* Fixed a bug concerning program arguments with spaces on
+  Linux/Darwin (was OK on Windows).
+
+* Added $stdin handling on Linux/Darwin (was OK on Windows).
+
+* Made all files in RUBYSCRIPT2EXE_BIN available via
+  ENV["PATH"].
+
+* Added a search for EEE.
+
+----------------------------------------------------------------
+
+0.3.3 - 23.03.2005
+
+* newlocation is an absolute path.
+
+* ENV["TEMP"] is an absolute path.
+
+* Added REQUIRE2LIB.
+
+* Added RUBYSCRIPT2EXE.
+
+* Added --rubyscript2exe-nostrip.
+
+* Added RUBYSCRIPT2EXE_BIN.
+
+* Added RUBYSCRIPT2EXE_LIB.
+
+* Fixed the non-SH-compatible shell (e.g. TCSH) bug.
+
+* Changed the name of the generated executable on Linux from
+  application.bin to application_linux.
+
+* Added (experimental) support for Mac OS X (Darwin).
+
+----------------------------------------------------------------
+
+0.3.2 - 18.01.2005
+
+* Updated to FreePascal 1.9.6 .
+
+* Added --rubyscript2exe-verbose and --rubyscript2exe-quiet.
+
+* Fixed a bug concerning ENV["RUBYOPT"] on the machine of the
+  customer.
+
+* Fixed a bug concerning spaces in the path to ruby.exe (e.g.
+  "C:\Program Files\ruby\ruby.exe).
+
+* Fixed a bug concerning read-only files.
+
+----------------------------------------------------------------
+
+0.3.1 - 13.01.2005
+
+* Enhanced the support for RubyGems. (Not yet considered
+  stable.)
+
+* Added support for .dll extensions and .o extensions.
+
+* Added RUBYSCRIPT2EXE_DLLS.
+
+* Fixed a bug concerning backslashes in the tracing part.
+
+----------------------------------------------------------------
+
+0.3.0 - 27.12.2004
+
+* Added compression.
+
+* Fixed the broken call to ResHacker.
+
+* Fixed a bug concerning --eee-list in combination with rubyw.
+
+----------------------------------------------------------------
+
+0.2.1 - 18.12.2004
+
+* Added (experimental) support for detecting and embedding Ruby
+  gems.
+
+* Added --eee-list .
+
+----------------------------------------------------------------
+
+0.2.0 - 08.12.2004
+
+* Added support for Linux.
+
+* Added handling of load-ed files, besides require-d files.
+
+----------------------------------------------------------------
+
+0.1.21 - 04.08.2004
+
+* Corrected a bug concerning the length of the command line
+  (again...).
+
+* Added the handling of dll's, needed by the so's.
+
+* Corrected the copying of the resulting exe when using the
+  tar.gz download.
+
+----------------------------------------------------------------
+
+0.1.20 - 30.07.2004
+
+* Added support for Cygwin (Big executables!).
+
+* Corrected the handling of -I (load-path).
+
+----------------------------------------------------------------
+
+0.1.19 - 26.07.2004
+
+* Rewrite of EEE.
+
+* Added recursion to EEE, so tar.exe can be thrown away.
+
+* msvcr71.dll is always added (if it exists). Microsoft tells
+  us to do so. This makes --rubyscript2exe-msvcr71 useless.
+
+----------------------------------------------------------------
+
+0.1.18 - 27.06.2004
+
+* Added application.ico .
+
+----------------------------------------------------------------
+
+0.1.17 - 23.06.2004
+
+* Added the icon.
+
+----------------------------------------------------------------
+
+0.1.16 - 11.06.2004
+
+* Packed both ruby.exe and rubyw.exe for debugging on location.
+
+* Corrected the name of eeew.exe after unpacking.
+
+* Updated to FreePascal 1.9.4 .
+
+----------------------------------------------------------------
+
+0.1.15 - 15.05.2004
+
+* Corrected a bug in --eee-justextract.
+
+* Changed the behavior of --eee-justextract.
+
+----------------------------------------------------------------
+
+0.1.14 - 04.05.2004
+
+* Corrected a shortcoming concerning the length of the command
+  line.
+
+* Updated to FreePascal 1.9.2 .
+
+----------------------------------------------------------------
+
+0.1.13 - 28.04.2004
+
+* Added --rubyscript2exe-msvcr71.
+
+----------------------------------------------------------------
+
+0.1.12 - 24.04.2004
+
+* Added --eee-justextract.
+
+----------------------------------------------------------------
+
+0.1.11 - 26.03.2004
+
+* Got rid of an upper limit of 10M for the executable.
+
+----------------------------------------------------------------
+
+0.1.10 - 16.03.2004
+
+* Fixed a bug concerning paths with spaces. (Whose idea was
+  that?...)
+
+----------------------------------------------------------------
+
+0.1.9 - 16.02.2004
+
+* Fixed a serious bug concerning ftools. (Sorry...)
+
+----------------------------------------------------------------
+
+0.1.8 - 30.01.2004
+
+* Fixed a bug concerning the handling of chdir.
+
+----------------------------------------------------------------
+
+0.1.7 - 08.11.2003
+
+* Handling of rbw files added.
+
+* --rubyscript2exe-ruby added.
+
+----------------------------------------------------------------
+
+0.1.6 - 31.10.2003
+
+* Fixed a bug concerning quoted parameters.
+
+----------------------------------------------------------------
+
+0.1.5 - 29.10.2003
+
+* --rubyscript2exe-rubyw added.
+
+----------------------------------------------------------------
+
+0.1.4 - 20.10.2003
+
+* A problem with file locking under Windows NT has been solved.
+
+----------------------------------------------------------------
+
+0.1.3 - 19.10.2003
+
+* I tested with the latest Pascal program myself, but I
+  distributed an old one. Oops!
+
+----------------------------------------------------------------
+
+0.1.2 - 18.10.2003
+
+* Replaced the call to the external deltree by a call to an
+  internal recursive delete, because in XP (NT?) it's not
+  called deltree but rd.
+
+----------------------------------------------------------------
+
+0.1.1 - 17.10.2003
+
+* Just removed an error message, which was not an error.
+
+----------------------------------------------------------------
+
+0.1 - 17.10.2003
+
+* First release.
+
+----------------------------------------------------------------
