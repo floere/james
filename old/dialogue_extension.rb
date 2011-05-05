@@ -8,30 +8,30 @@
 # if a state is entered, enter_#{state_name} is called
 # if a state is exited, exit_#{state_name} is called
 class DialogueExtension < Dialogue
-  
+
   attr_reader :state
-  
+
   alias :old_initialize :initialize
-  
+
   # every subclass of this class automatically has its state set to :entry on creation
   # def initialize(*args)
   #   puts "Resetting ", self.name, "\n"
   #   reset
   #   old_initialize(*args)
   # end
-  
+
   # # automatically adds a hook phrase
   # # meaning: adds a move from :awake to this hook word
   # # and also a method
   def initialize
     # reset
   end
-  # 
+  #
   # # TODO improve this such that reset doesn't need to be called in each initializer!
   def reset
     @state = :entry
   end
-  
+
   # TODO think about saying something after each method call though like this it is kept simple which is good
   def hear(phrase)
     # if next state
@@ -44,24 +44,24 @@ class DialogueExtension < Dialogue
     # call entry method
     send("enter_#{@state}".intern) if respond_to?("enter_#{@state}")
   end
-  
+
   # next possible phrases
   # TODO splat
   def expects
     self.class.moves[@state].keys
   end
-  
+
   def next_state(phrase)
     self.class.moves[@state][phrase] if self.class.moves[@state]
   end
-  
+
   # returns the possible states of this dialogue
   def self.possible_states
     self.moves.keys
   end
-  
+
   # metaprog
-  
+
   # hook words - these define when this dialogue is entered
   # adds a hooks method
   # TODO get hooks from yaml file
@@ -84,18 +84,18 @@ class DialogueExtension < Dialogue
       end
     end
   end
-  
+
   # initial state
   def self.initial_state(initial)
     self.class_eval do
-      # add accessor for 
+      # add accessor for
       class <<self
         attr_accessor :initial
       end
       self.initial = initial
     end
   end
-  
+
   # state definitions like
   # state :name, { moves }
   def self.state(name, moves)
@@ -105,7 +105,7 @@ class DialogueExtension < Dialogue
       # split arrays here instead of handling later specifically
       # can change the implementation later if needed
       moves.each do |words,state|
-        words.each do |word|
+        [*words].each do |word|
           self.moves[name][word] = state
         end
       end
@@ -115,5 +115,5 @@ class DialogueExtension < Dialogue
     end
     # puts "#{self.name} === #{self.moves.inspect}"
   end
-  
+
 end
