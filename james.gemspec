@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.description = 'Modular Electronic Butler. Add Dialog(ue)s to it to add more abilities to it.'
   s.summary = 'James: Modular Electronic Butler.'
 
-  s.files = Dir["lib/**/*.rb"]
+  s.files = Dir["lib/**/*.rb", "aux/**/*.rb"]
   s.test_files = Dir["spec/**/*_spec.rb"]
 
   s.add_development_dependency 'rspec'

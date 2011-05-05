@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+#
+
+# james joke phonebook quote
+# OR
+# james # Uses Dir.pwd
+#
+
+begin
+  require 'james/cli'
+rescue LoadError => e
+  require 'rubygems'
+  james_path = File.expand_path '../../aux', __FILE__
+  $:.unshift(james_path) if File.directory?(james_path) && !$:.include?(james_path)
+  require 'james/cli'
+end
+
+cli = James::CLI.new
+cli.execute *ARGV

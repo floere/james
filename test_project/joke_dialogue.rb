@@ -1,13 +1,14 @@
-require File.expand_path '../../lib/james'
+require File.expand_path '../../lib/james', __FILE__
 
 # Little parody on the existing OSX joke
 # telling system.
 #
-class JokeDialogue < Dialogue
+class JokeDialogue
+  include James::Dialogue
 
-  initial_state :joke
-  hook_words 'tell me a funny thing', 'tell me a joke'
+  hooks 'tell me a funny thing', 'tell me a joke'
   state :joke, { 'another one' => :joke }
+  initial :joke
 
   def initialize
     # remove!
