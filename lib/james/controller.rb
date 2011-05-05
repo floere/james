@@ -59,7 +59,9 @@ module James
       @synthesizer.startSpeakingString text
     end
     def hear text
-      @dialogue.hear text
+      @dialogue.hear text do |response|
+        say response
+      end
     end
     def expects
       @dialogue.expects

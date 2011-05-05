@@ -28,11 +28,14 @@ module James
 
     # On entering awake state, listen to hooks. TODO Hooks dialogue?
     #
+    def enter_sleeping
+      "zzzZZZzzz"
+    end
     def enter_awake
       @dialogue = nil
     end
     def enter_exit
-      exit!
+      System.exit
     end
 
   end

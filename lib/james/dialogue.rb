@@ -9,15 +9,35 @@ module James
     # We heard phrase.
     #
     def hear phrase
-      @state = state.transition self, phrase
+      transition phrase
+    end
+    def exit phrase
+      self.send :"exit_#{name}", phrase if self.respond_to? :"exit_#{name}"
+    end
+    def enter
+      self.send :"enter_#{name}" if self.respond_to? :"enter_#{name}"
+    end
+    def transition phrase
+      # Call exit method.
+      #
+      yield state.exit dialogue, phrase if block_given?
+
+      # TODO Say response?
+      #
+      p [state.transitions, phrase]
+      state_id = state.next_for(phrase)
+      p state_id
+      @state = state_for state_id
+
+      # Call entry method.
+      #
+      yield enter dialogue if block_given?
     end
 
     # next possible phrases
     # TODO splat
     def expects
-      self.class.states.inject([]) do |total, state|
-        total + state_for(state.first).hooks
-      end
+      state.hooks
     end
 
     #
