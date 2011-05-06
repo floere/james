@@ -1,8 +1,11 @@
 framework 'AppKit'
 
-require File.expand_path '../main_dialogue', __FILE__
-require File.expand_path '../recognizers/base', __FILE__
-require File.expand_path '../recognizers/audio', __FILE__
+require File.expand_path '../inputs/base', __FILE__
+require File.expand_path '../inputs/audio', __FILE__
+require File.expand_path '../inputs/terminal', __FILE__
+
+require File.expand_path '../outputs/audio', __FILE__
+require File.expand_path '../outputs/terminal', __FILE__
 
 module James
 
@@ -20,9 +23,7 @@ module James
       start_output
       start_input
 
-      self.voice = 'com.apple.speech.synthesis.voice.Alex'
-
-      visitor.enter
+      visitor.enter { |text| say text }
 
       @input.listen
     end
@@ -47,34 +48,31 @@ module James
       # female: com.apple.speech.synthesis.voice.Vicki
       # male: com.apple.speech.synthesis.voice.Bruce
     end
-    def voice= name
-      @synthesizer.setVoice name
-    end
 
     def initialize_dialogues
       # Create the main dialogue.
       #
       # Everybody hooks into this, then.
       #
-      dialogues = Dialogues.new MainDialogue
+      dialogues = Dialogues.new
       dialogues.resolve
       dialogues
     end
     # Start recognizing words.
     #
     def start_input
-      @input = Recognizers::Audio.new self
+      @input = Inputs::Audio.new self
     end
     # Start speaking.
     #
     def start_output
-      @synthesizer = NSSpeechSynthesizer.alloc.init
+      @output = Outputs::Audio.new
     end
 
     # Callback method from dialogue.
     #
     def say text
-      @synthesizer.startSpeakingString text
+      @output.say text
     end
     def hear text
       @visitor.hear text do |response|
@@ -85,7 +83,7 @@ module James
       @visitor.expects
     end
 
-    def self.run
+    def self.listen
       app = NSApplication.sharedApplication
       app.delegate = new
 

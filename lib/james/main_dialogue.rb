@@ -7,28 +7,40 @@ module James
   class MainDialogue
     include Dialogue
 
-    state :exit
-    state :awake, {
-      'sleep' => :sleeping
-    }
-    state :sleeping, {
-      'james' => :awake,
-      'exit, please' => :exit
-    }
-    entry 'james' => :awake
+    hear 'wake up james' => :awake
 
-    def enter_sleeping
-      "Goodbye, sir"
+    # Create Protostate with block. Then, create instance instance_evaling block.
+    #
+    state :awake do
+      hear 'sleep james' => :sleeping
+      hear 'my options?' { |the_next| the_next.phrases.join ' ' }
+      into { "At your service" }
+      exit { "Right away" }
     end
-    def enter_awake
-      "At your service"
+
+    state :sleeping do
+      hear 'wake up james' => :awake
+      into { "Good night, Sir" }
     end
-    def exit_awake
-      "Of course"
-    end
-    def enter_exit
-      System.exit
-    end
+
+    # state :awake, {
+    #   'sleep james' => :sleeping
+    #   # 'james, my options?' => lambda { || } # stays in this state but executes.
+    # }
+    # state :sleeping, {
+    #   'wake up james' => :awake
+    # }
+    # entry 'wake up james' => :awake
+    #
+    # def enter_sleeping
+    #   "Good night, Sir"
+    # end
+    # def enter_awake
+    #   "At your service"
+    # end
+    # def exit_awake
+    #   "Right away"
+    # end
 
   end
 

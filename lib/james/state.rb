@@ -44,12 +44,16 @@ module James
     # Conditionally send enter_... method to context.
     #
     def enter
-      context.send :"enter_#{name}" if context.respond_to? :"enter_#{name}"
+      method_name = :"enter_#{name}"
+      if context.respond_to? method_name
+        args = [method_name, self]
+        context.send *args.shift(context.method(method_name).arity + 1)
+      end
     end
     # Conditionally send exit_... method to context.
     #
-    def exit phrase
-      context.send :"exit_#{name}", phrase if context.respond_to? :"exit_#{name}"
+    def exit
+      context.send :"exit_#{name}" if context.respond_to? :"exit_#{name}"
     end
 
     def to_s

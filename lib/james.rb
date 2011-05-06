@@ -1,4 +1,4 @@
-module James end
+module James; end
 
 # require File.expand_path '../james/state', __FILE__
 require File.expand_path '../james/timer', __FILE__
@@ -14,3 +14,10 @@ require File.expand_path '../james/dialogue', __FILE__
 
 require File.expand_path '../james/controller', __FILE__
 
+module James
+
+  def self.listen
+    Controller.new.listen
+  end
+
+end

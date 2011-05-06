@@ -37,12 +37,12 @@ module James
     #
     def enter
       result = current.enter
-      yield result if block_given?
+      yield result if result && block_given?
       result
     end
-    def exit phrase
-      result = current.exit phrase
-      yield result if block_given?
+    def exit
+      result = current.exit
+      yield result if result && block_given?
       result
     end
     def transition phrase
@@ -53,7 +53,7 @@ module James
     end
     def hear phrase, &block
       timer.restart
-      exit phrase, &block
+      exit &block
       transition phrase
       check &block
       enter &block

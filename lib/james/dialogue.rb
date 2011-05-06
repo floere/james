@@ -23,14 +23,14 @@ module James
     #
     #
     def state_for name
-      self.class.state_for name
+      self.class.state_for name, self
     end
 
     module ClassMethods
 
       # Defines the entry sentences.
       #
-      def entry definition
+      def hear definition
         define_method :entries do
           definition
         end
@@ -52,14 +52,15 @@ module James
         #
         @states[name] = transitions
       end
-      def state_for name
+      def state_for name, instance
         # Lazily wrap.
         #
-        if @states[name].respond_to?(:each)
-          @states[name] = State.new(name, self, @states[name])
+        # TODO Rewrite!
+        #
+        if states[name].respond_to?(:each)
+          states[name] = State.new(name, instance, states[name])
         end
-
-        @states[name]
+        states[name]
       end
 
     end

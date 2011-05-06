@@ -5,13 +5,13 @@ module James
   class CLI
 
     def execute *dialogues
-      all_dialogues = Dir["*_dialog{,ue}.rb"]
+      all_dialogues = Dir["**/*_dialog{,ue}.rb"]
+      all_dialogues.select! { |dialogue| dialogues.any? { |given| dialogue =~ %r{#{given}_dialog(ue)?.rb$} } } unless dialogues.empty?
+      puts "James: Using #{all_dialogues.join(', ')} for our conversation, Sir."
       all_dialogues.each do |dialogue|
-        next unless dialogues.empty? || dialogues.any? { |given_dialogue| dialogue =~ %r{#{given_dialogue}_dialog(ue)?.rb$} }
         require File.expand_path dialogue, Dir.pwd
       end
-
-      Controller.run
+      James.listen
     rescue StandardError => e
       p e
     end
