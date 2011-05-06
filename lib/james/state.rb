@@ -37,8 +37,8 @@ module James
     # It accesses the context (Dialog(ue)) to get a full object state.
     #
     def next_for phrase
-      state_name = self.transitions[phrase]
-      context.state_for state_name
+      state = self.transitions[phrase]
+      state.respond_to?(:phrases) ? state : context.state_for(state)
     end
 
     # Conditionally send enter_... method to context.

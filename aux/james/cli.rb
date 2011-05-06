@@ -11,7 +11,9 @@ module James
         require File.expand_path dialogue, Dir.pwd
       end
 
-      Controller.new
+      Controller.run
+    rescue StandardError => e
+      p e
     end
 
   end

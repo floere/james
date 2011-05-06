@@ -8,7 +8,6 @@ module James
     include Dialogue
 
     state :exit
-    state :back, { 'quit dialogue' => :awake }
     state :awake, {
       'sleep' => :sleeping
     }
@@ -16,23 +15,16 @@ module James
       'james' => :awake,
       'exit, please' => :exit
     }
-    initial :awake
+    entry 'james' => :awake
 
-    # This variable defines if we are in a dialogue.
-    #
-    attr_reader :dialogue
-
-    def initialize
-      @dialogue = nil
-    end
-
-    # On entering awake state, listen to hooks. TODO Hooks dialogue?
-    #
     def enter_sleeping
-      "zzzZZZzzz"
+      "Goodbye, sir"
     end
     def enter_awake
-      @dialogue = nil
+      "At your service"
+    end
+    def exit_awake
+      "Of course"
     end
     def enter_exit
       System.exit

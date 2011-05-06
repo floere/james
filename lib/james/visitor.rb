@@ -24,12 +24,16 @@ module James
       @timer   = timer || Timer.new
     end
 
+    # Escapes the current state back to the initial.
+    #
     def escape
       timer.stop
       self.current = initial
     end
 
     # We hear a phrase.
+    #
+    # Also used to start the whole process.
     #
     def enter
       result = current.enter
@@ -45,14 +49,17 @@ module James
       self.current = current.next_for phrase
     end
     def check
-      escape && yield("That led nowhere. Check your dialogues!") unless current
+      escape && yield("That led nowhere.") unless current
     end
-    def hear phrase
-      timer.reset
-      exit phrase
+    def hear phrase, &block
+      timer.restart
+      exit phrase, &block
       transition phrase
-      check
-      enter
+      check &block
+      enter &block
+    end
+    def expects
+      current.phrases
     end
 
   end

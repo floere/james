@@ -52,12 +52,31 @@ describe James::Visitor do
     end
   end
   
+  describe 'transition' do
+    it 'sets the current state' do
+      initial.stub! :next_for => :some_state
+      
+      visitor.transition 'some phrase'
+      
+      visitor.current.should == :some_state
+    end
+  end
+  
+  describe 'escape' do
+    it 'calls methods in order' do
+      timer.should_receive(:stop).once.with
+      visitor.should_receive(:current=).once.with initial
+      
+      visitor.escape
+    end
+  end
+  
   describe 'hear' do
     it 'calls methods in order' do
-      timer.should_receive(:reset).once.ordered.with
+      timer.should_receive(:restart).once.ordered.with
       visitor.should_receive(:exit).once.ordered.with(:some_phrase)
       visitor.should_receive(:transition).once.ordered.with(:some_phrase)
-      visitor.should_receive(:check).once.ordered.with
+      # visitor.should_receive(:check).once.ordered.with
       visitor.should_receive(:enter).once.ordered.with
       
       visitor.hear :some_phrase

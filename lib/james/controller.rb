@@ -1,18 +1,30 @@
 framework 'AppKit'
 
+require File.expand_path '../main_dialogue', __FILE__
+require File.expand_path '../recognizers/base', __FILE__
+require File.expand_path '../recognizers/audio', __FILE__
+
 module James
 
   class Controller
 
-    attr_reader :dialogue
+    attr_reader :visitor
+
+    def initialize
+      @visitor = initialize_dialogues.visitor
+    end
 
     def applicationDidFinishLaunching notification
       load_voices
-      initialize_dialogue
+
       start_output
       start_input
 
       self.voice = 'com.apple.speech.synthesis.voice.Alex'
+
+      visitor.enter
+
+      @input.listen
     end
     def windowWillClose notification
       puts "James is going to bed."
@@ -39,8 +51,14 @@ module James
       @synthesizer.setVoice name
     end
 
-    def initialize_dialogue
-      @dialogue = MainDialogue.new
+    def initialize_dialogues
+      # Create the main dialogue.
+      #
+      # Everybody hooks into this, then.
+      #
+      dialogues = Dialogues.new MainDialogue
+      dialogues.resolve
+      dialogues
     end
     # Start recognizing words.
     #
@@ -59,12 +77,40 @@ module James
       @synthesizer.startSpeakingString text
     end
     def hear text
-      @dialogue.hear text do |response|
+      @visitor.hear text do |response|
         say response
       end
     end
     def expects
-      @dialogue.expects
+      @visitor.expects
+    end
+
+    def self.run
+      app = NSApplication.sharedApplication
+      app.delegate = new
+
+      # window = NSWindow.alloc.initWithContentRect([200, 300, 300, 100],
+      #     styleMask:NSTitledWindowMask|NSClosableWindowMask|NSMiniaturizableWindowMask,
+      #     backing:NSBackingStoreBuffered,
+      #     defer:false)
+      # window.title      = 'MacRuby: The Definitive Guide'
+      # window.level      = 3
+      # window.delegate   = app.delegate
+      #
+      # button = NSButton.alloc.initWithFrame([80, 10, 120, 80])
+      # button.bezelStyle = 4
+      # button.title      = 'Hello World!'
+      # button.target     = app.delegate
+      # button.action     = 'say_hello:'
+      #
+      # window.contentView.addSubview(button)
+      #
+      # window.display
+      # window.orderFrontRegardless
+
+      app.delegate.applicationDidFinishLaunching nil
+
+      app.run
     end
 
   end
