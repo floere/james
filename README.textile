@@ -20,6 +20,7 @@ h2. Examples
 Create a file called @time_dialogue.rb@ (or @time_dialog.rb@, James doesn't mind Americans):
 
 ```ruby
+
 class TimeDialogue
 
   include James::Dialogue
@@ -32,6 +33,7 @@ class TimeDialogue
   end
 
 end
+
 ```
 
 This says that if James hears (@hear@) @"What time is it?"@ that it should enter this conversation into state @:time@.
