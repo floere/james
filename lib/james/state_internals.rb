@@ -21,10 +21,10 @@ module James
     end
 
     def __into__
-      @into_block && @into_block.call
+      @into_block && context.instance_eval(&@into_block)
     end
     def __exit__
-      @exit_block && @exit_block.call
+      @exit_block && context.instance_eval(&@exit_block)
     end
 
   end

@@ -14,17 +14,17 @@ describe James::Visitor do
   
   describe 'enter' do
     it 'calls enter on the state' do
-      initial.should_receive(:enter).once
+      initial.should_receive(:__into__).once
       
       visitor.enter
     end
     it 'returns the result' do
-      initial.stub! :enter => 'some text'
+      initial.stub! :__into__ => 'some text'
       
       visitor.enter.should == 'some text'
     end
     it 'yields the result' do
-      initial.stub! :enter => 'some text'
+      initial.stub! :__into__ => 'some text'
       
       visitor.enter do |text|
         text.should == 'some text'
@@ -34,19 +34,19 @@ describe James::Visitor do
   
   describe 'exit' do
     it 'calls enter on the state' do
-      initial.should_receive(:exit).once.with('some phrase')
+      initial.should_receive(:__exit__).once.with
       
-      visitor.exit 'some phrase'
+      visitor.exit
     end
     it 'returns the result' do
-      initial.stub! :exit => 'some text'
+      initial.stub! :__exit__ => 'some text'
       
-      visitor.exit('some phrase').should == 'some text'
+      visitor.exit.should == 'some text'
     end
     it 'yields the result' do
-      initial.stub! :exit => 'some text'
+      initial.stub! :__exit__ => 'some text'
       
-      visitor.exit('some phrase') do |text|
+      visitor.exit do |text|
         text.should == 'some text'
       end
     end
@@ -73,9 +73,10 @@ describe James::Visitor do
   
   describe 'hear' do
     it 'calls methods in order' do
+      visitor.should_receive(:hears?).once.ordered.with(:some_phrase).and_return true
       timer.should_receive(:restart).once.ordered.with
-      visitor.should_receive(:exit).once.ordered.with(:some_phrase)
-      visitor.should_receive(:transition).once.ordered.with(:some_phrase)
+      visitor.should_receive(:exit).once.ordered.with
+      visitor.should_receive(:transition).once.ordered.with :some_phrase
       # visitor.should_receive(:check).once.ordered.with
       visitor.should_receive(:enter).once.ordered.with
       

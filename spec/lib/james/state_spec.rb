@@ -56,6 +56,26 @@ describe James::State do
     end
   end
   
+  context 'of the context' do
+    let(:state) do
+      described_class.new :some_name, @context do
+        hear 'transition one' => :next_state1
+        into { self }
+        exit { self }
+      end
+    end
+    describe '__into__' do
+      it 'is called' do
+        state.__into__.should == @context
+      end
+    end
+    describe '__exit__' do
+      it 'is conditionally called' do
+        state.__exit__.should == @context
+      end
+    end
+  end
+  
   context 'with 1 transition and into and exit' do
     let(:state) do
       described_class.new :some_name, @context do
