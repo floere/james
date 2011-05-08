@@ -22,13 +22,16 @@ All examples can be found in @/examples@.
 Create a file called @time_dialogue.rb@ (or @time_dialog.rb@, James doesn't mind Americans):
 
 <pre><code>class TimeDialogue
+
   include James::Dialogue
+
   hear 'what time is it?' => :time
   state :time do
     hear ['What time is it?', 'And now?'] => :time
     into { time = Time.now; "It is currently #{time.hour} #{time.min}." }
     exit {} # Optional, listed for completeness.
   end
+
 end
 </code></pre>
 
@@ -57,8 +60,7 @@ h3. Short Version
 
 There is a short, anonymous dialog version, using @James.dialogue@.
 
-<pre><code>
-James.dialogue do
+<pre><code>James.dialogue do
 
   hear 'what time is it?' => :time
   state :time do
@@ -73,7 +75,7 @@ h3. Extended Version
 
 Or there is an extended version, using initialize to set up some important stuff that needs other stuff for doing stuff, you know?
 
-```ruby
+<pre><code>
 require 'james'
 
 class TwitterDialogue
@@ -92,6 +94,7 @@ class TwitterDialogue
       "People are saying this: #{@client.newsfeed(10).join(' ... ')}"
     end
   end
+
   state :mentions do
     hear ['What is generally said?', 'Back to newsfeed!'] => :newsfeed
     into do
@@ -101,7 +104,7 @@ class TwitterDialogue
   end
 
 end
-```
+</code></pre>
 
 h2. Contributions
 
