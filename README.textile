@@ -21,7 +21,6 @@ All examples can be found in @/examples@.
 
 Create a file called @time_dialogue.rb@ (or @time_dialog.rb@, James doesn't mind Americans):
 
-<code><pre>
   class TimeDialogue
     include James::Dialogue
     hear 'what time is it?' => :time
@@ -31,7 +30,6 @@ Create a file called @time_dialogue.rb@ (or @time_dialog.rb@, James doesn't mind
       exit {} # Optional, listed for completeness.
     end
   end
-</pre></code>
 
 This says that if James hears (@hear@) @"What time is it?"@ that it should enter this conversation into state @:time@.
 
