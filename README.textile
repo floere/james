@@ -17,24 +17,24 @@ James consists of dialog(ue)s that are modeled as state machines. You navigate t
 
 h2. Examples
 
+All examples can be found in @/examples@.
+
 Create a file called @time_dialogue.rb@ (or @time_dialog.rb@, James doesn't mind Americans):
 
-```ruby
+<code><pre>
+  class TimeDialogue
 
-class TimeDialogue
+    include James::Dialogue
 
-  include James::Dialogue
+    hear 'what time is it?' => :time
+    state :time do
+      hear ['What time is it?', 'And now?'] => :time
+      into { time = Time.now; "It is currently #{time.hour} #{time.min}." }
+      exit {} # Optional, listed for completeness.
+    end
 
-  hear 'what time is it?' => :time
-  state :time do
-    hear ['What time is it?', 'And now?'] => :time
-    into { time = Time.now; "It is currently #{time.hour} #{time.min}." }
-    exit {} # Optional, listed for completeness.
   end
-
-end
-
-```
+</pre></code>
 
 This says that if James hears (@hear@) @"What time is it?"@ that it should enter this conversation into state @:time@.
 
