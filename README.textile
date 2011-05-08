@@ -75,8 +75,7 @@ h3. Extended Version
 
 Or there is an extended version, using initialize to set up some important stuff that needs other stuff for doing stuff, you know?
 
-<pre><code>
-require 'james'
+<pre><code>require 'james'
 
 class TwitterDialogue
 
