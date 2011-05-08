@@ -21,7 +21,7 @@ All examples can be found in @/examples@.
 
 Create a file called @time_dialogue.rb@ (or @time_dialog.rb@, James doesn't mind Americans):
 
-<pre><code>  class TimeDialogue
+<pre><code>class TimeDialogue
   include James::Dialogue
   hear 'what time is it?' => :time
   state :time do
@@ -57,17 +57,17 @@ h3. Short Version
 
 There is a short, anonymous dialog version, using @James.dialogue@.
 
-```ruby
-  James.dialogue do
+<pre><code>
+James.dialogue do
 
-    hear 'what time is it?' => :time
-    state :time do
-      hear ['What time is it?', 'And now?'] => :time
-      into { time = Time.now; "It is currently #{time.hour} #{time.min}." }
-    end
-
+  hear 'what time is it?' => :time
+  state :time do
+    hear ['What time is it?', 'And now?'] => :time
+    into { time = Time.now; "It is currently #{time.hour} #{time.min}." }
   end
-```
+
+end
+</code></pre>
 
 h3. Extended Version
 
