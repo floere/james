@@ -1,8 +1,5 @@
 require File.expand_path '../../lib/james', __FILE__
 
-# Little parody on the existing OSX joke
-# telling system.
-#
 class TimeDialogue
   include James::Dialogue
 
@@ -13,3 +10,14 @@ class TimeDialogue
   end
 
 end
+
+# James.dialogue do
+#
+# end
+#
+# equals
+#
+# Class.new do
+#   include James::Dialogue
+#
+# end
