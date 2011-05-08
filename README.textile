@@ -32,8 +32,7 @@ Create a file called @time_dialogue.rb@ (or @time_dialog.rb@, James doesn't mind
     exit {} # Optional, listed for completeness.
   end
 
-end
-</code></pre>
+end</code></pre>
 
 This says that if James hears (@hear@) @"What time is it?"@ that it should enter this conversation into state @:time@.
 
@@ -46,14 +45,14 @@ Here, he will just say the current time when entering the @:time@ state.
 h3. Running it
 
 Running it is easy. Either use
-@require 'james'@
+<pre><code>require 'james'</code></pre>
 in your script, and call it by using
-@ruby time_dialogue.rb@
+<pre><code>ruby time_dialogue.rb</code></pre>
 or else, in the terminal, just call
-@$ james@
+<pre><code>$ james</code></pre>
 and it will include all dialogues in this directory.
 Or
-@$ james time joke twitter@
+<pre><code>$ james time joke twitter</code></pre>
 and it will include the time dialogue, the joke dialogue, and the twitter dialogue.
 
 h3. Short Version
@@ -68,8 +67,7 @@ There is a short, anonymous dialog version, using @James.dialogue@.
     into { time = Time.now; "It is currently #{time.hour} #{time.min}." }
   end
 
-end
-</code></pre>
+end</code></pre>
 
 h3. Extended Version
 
@@ -102,8 +100,7 @@ class TwitterDialogue
     end
   end
 
-end
-</code></pre>
+end</code></pre>
 
 h2. Contributions
 
