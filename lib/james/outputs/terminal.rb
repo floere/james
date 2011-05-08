@@ -2,6 +2,8 @@ module James
 
   module Outputs
 
+    # Terminal output for silent purposes.
+    #
     class Terminal
 
       def say text

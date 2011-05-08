@@ -6,9 +6,10 @@ module James
   #
   class Dialogues
 
-    attr_reader :dialogues
+    attr_reader :initial, :dialogues
 
     def initialize
+      @initial   = State.new :__initial_plugin_state__, nil
       @dialogues = self.class.dialogues.map &:new
     end
 
@@ -32,7 +33,7 @@ module James
     # is already used.
     #
     def resolve
-      # Hook into.
+      # Hook dialogues into initial state.
       #
       resolved_entries = {}
       dialogues.each do |dialogue|
@@ -41,14 +42,15 @@ module James
         end
       end
 
-      @visitor = Visitor.new main.state :awake, resolved_entries
+      initial.hear resolved_entries
     end
 
-    # Get a visitor on the initial state.
+    # Get the visitor.
+    #
+    # Initialized on the initial state.
     #
     def visitor
-      state = main.state_for :awake
-      Visitor.new state
+      @visitor ||= Visitor.new initial
     end
 
   end

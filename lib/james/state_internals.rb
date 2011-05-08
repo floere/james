@@ -20,13 +20,9 @@ module James
       state.respond_to?(:phrases) ? state : context.state_for(state)
     end
 
-    # Conditionally send enter_... method to context.
-    #
     def __into__
       @into_block && @into_block.call
     end
-    # Conditionally send exit_... method to context.
-    #
     def __exit__
       @exit_block && @exit_block.call
     end

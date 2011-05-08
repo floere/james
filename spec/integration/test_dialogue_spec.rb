@@ -29,11 +29,11 @@ describe 'TestDialogue' do
     describe "integration" do
       it 'works correctly' do
         visitor.current.name.should == :first
-        visitor.hear 'go' {}
+        visitor.hear('go') {}
         visitor.current.name.should == :second
-        visitor.hear 'back' {}
+        visitor.hear('back') {}
         visitor.current.name.should == :first
-        visitor.hear 'stay' {}
+        visitor.hear('stay') {}
         visitor.current.name.should == :first
       end
       it 'calls the entrance/exits correctly' do

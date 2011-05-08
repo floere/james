@@ -1,3 +1,5 @@
+framework 'AppKit'
+
 require File.expand_path '../inputs/base', __FILE__
 require File.expand_path '../inputs/audio', __FILE__
 require File.expand_path '../inputs/terminal', __FILE__
@@ -81,9 +83,9 @@ module James
       @visitor.expects
     end
 
-    def self.listen
+    def listen
       app = NSApplication.sharedApplication
-      app.delegate = new
+      app.delegate = self
 
       # window = NSWindow.alloc.initWithContentRect([200, 300, 300, 100],
       #     styleMask:NSTitledWindowMask|NSClosableWindowMask|NSMiniaturizableWindowMask,

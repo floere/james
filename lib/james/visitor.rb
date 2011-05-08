@@ -36,12 +36,12 @@ module James
     # Also used to start the whole process.
     #
     def enter
-      result = current.enter
+      result = current.__into__
       yield result if result && block_given?
       result
     end
     def exit
-      result = current.exit
+      result = current.__exit__
       yield result if result && block_given?
       result
     end
@@ -52,11 +52,16 @@ module James
       escape && yield("That led nowhere.") unless current
     end
     def hear phrase, &block
+      return unless hears? phrase
       timer.restart
-      exit &block
+      exit_text = exit &block
       transition phrase
       check &block
-      enter &block
+      into_text = enter &block
+      exit_text || into_text
+    end
+    def hears? phrase
+      expects.include? phrase
     end
     def expects
       current.phrases

@@ -2,6 +2,8 @@ module James
 
   module Inputs
 
+    # Terminal input for silent purposes.
+    #
     class Terminal < Base
 
       def listen

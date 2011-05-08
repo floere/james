@@ -15,8 +15,6 @@ module James
       end
 
       James.listen
-    rescue StandardError => e
-      p e
     end
 
   end

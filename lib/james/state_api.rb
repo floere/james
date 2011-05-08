@@ -35,10 +35,14 @@ module James
     #   hear 'What time is it?' => :time,
     #        'What? This late?' => :yes
     #
+    # Example for staying in the same state:
+    #   hear 'What time is it?' # Implicitly staying.
+    #
     # Note: We could expand on this with
     #   hear 'What time is it?' => lambda { Do something here with the time, returns to same state }
     #
     def hear transitions
+      transitions = { transitions => name } unless transitions.respond_to?(:to_hash)
       @transitions = expand transitions
     end
 
