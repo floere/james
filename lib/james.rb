@@ -5,6 +5,7 @@ require File.expand_path '../james/timer', __FILE__
 require File.expand_path '../james/visitor', __FILE__
 require File.expand_path '../james/dialogues', __FILE__
 
+require File.expand_path '../james/dialogue_instantiation', __FILE__
 require File.expand_path '../james/dialogue', __FILE__
 # require File.expand_path '../james/main_dialogue', __FILE__
 

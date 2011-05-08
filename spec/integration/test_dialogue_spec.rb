@@ -1,6 +1,6 @@
 # encoding: utf-8
 #
-require 'spec_helper'
+require File.expand_path '../../../lib/james', __FILE__
 
 describe 'TestDialogue' do
 
@@ -10,23 +10,31 @@ describe 'TestDialogue' do
       Class.new do
         include James::Dialog
 
-        hooks 'test1', 'test2'
-        state :first,  { 'go' => :second, 'stay' => :first }
-        state :second, { 'go' => :third,  'back' => :first }
-        initial :first
+        hear ['test1', 'test2'] => :first
+        
+        state :first do
+          hear 'go' => :second, 'stay' => :first
+        end
+        
+        state :second do
+          hear 'go' => :third, 'back' => :first
+        end
       end.new
 
+    end
+    let(:visitor) do
+      James::Visitor.new dialogue.state_for(:first)
     end
 
     describe "integration" do
       it 'works correctly' do
-        dialogue.state.name.should == :first
-        dialogue.hear 'go'
-        dialogue.state.name.should == :second
-        dialogue.hear 'back'
-        dialogue.state.name.should == :first
-        dialogue.hear 'stay'
-        dialogue.state.name.should == :first
+        visitor.current.name.should == :first
+        visitor.hear 'go' {}
+        visitor.current.name.should == :second
+        visitor.hear 'back' {}
+        visitor.current.name.should == :first
+        visitor.hear 'stay' {}
+        visitor.current.name.should == :first
       end
       it 'calls the entrance/exits correctly' do
         dialogue.should_receive(:respond_to?).once.with(:enter_second).and_return true
@@ -41,34 +49,35 @@ describe 'TestDialogue' do
         dialogue.should_receive(:respond_to?).once.with(:exit_first).and_return true
         dialogue.should_receive(:exit_first).once
 
-        dialogue.hear 'go'
-        dialogue.hear 'back'
+        visitor.hear 'go'
+        visitor.hear 'back'
       end
     end
   end
   
-  context 'integration' do
-    let(:dialogue) do
-      dialogue = Class.new do
-        include James::Dialog
-
-        hooks 'test1', 'test2'
-        state :first,  { 'go' => :second, 'stay' => :first }
-        state :second, { 'go' => :third,  'back' => :first }
-        initial :first
-      end.new
-      
-      James::MainDialogue.new
-    end
-    it 'works correctly' do
-      dialogue.state.name.should == :awake
-      dialogue.hear 'sleep'
-      dialogue.state.name.should == :sleeping
-    end
-    it 'delegates correctly' do
-      dialogue.state.name.should == :awake
-      dialogue.hear 'test1'
-    end
-  end
+  # context 'integration' do
+  #   let(:dialogue) do
+  #     dialogue = Class.new do
+  #       include James::Dialog
+  # 
+  #       hear ['test1', 'test2'] => :first
+  #       state :first do
+  #         hear 'go' => :second, 'stay' => :first
+  #       end
+  #       state :second do
+  #         hear 'go' => :third, 'back' => :first
+  #       end
+  #     end.new
+  #   end
+  #   it 'works correctly' do
+  #     dialogue.state.name.should == :awake
+  #     dialogue.hear 'sleep'
+  #     dialogue.state.name.should == :sleeping
+  #   end
+  #   it 'delegates correctly' do
+  #     dialogue.state.name.should == :awake
+  #     dialogue.hear 'test1'
+  #   end
+  # end
 
 end

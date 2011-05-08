@@ -1,3 +1,5 @@
+framework 'AppKit'
+
 require File.expand_path '../../james', __FILE__
 
 app = NSApplication.sharedApplication

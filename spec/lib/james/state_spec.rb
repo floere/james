@@ -1,31 +1,37 @@
 # encoding: utf-8
 #
-require File.expand_path '../../../../lib/james/state', __FILE__
+require File.expand_path '../../../../lib/james/state_api', __FILE__
+require File.expand_path '../../../../lib/james/state_internals', __FILE__
 
 describe James::State do
   
   before(:all) do
-    @context = Class.new do
-      def to_s
-        'some context'
-      end
-      def state_for phrase
+    @context = stub :context,
+                    :inspect => 'some_context'
+    class << @context
+      
+      def state_for name
         {
           :next_state1 => :some_state_object1,
           :next_state2 => :some_state_object2,
-          :next_state3 => :some_state_object3
-        }[phrase]
+          :next_state3 => :some_state_object3,
+        }[name]
       end
-    end.new
+      
+    end
   end
   
-  context 'with no transitions' do
-    let(:state) { described_class.new :some_name, @context }
+  context 'with no transitions or into or exit' do
+    let(:state) do
+      described_class.new :some_name, @context do
+        # Nothing to see here.
+      end
+    end
     describe 'phrases' do
       it { state.phrases.should == [] }
     end
     describe 'to_s' do
-      it { state.to_s.should == 'James::State(some_name, some context, {})' }
+      it { state.to_s.should == 'James::State(some_name, some_context, {})' }
     end
     describe 'next_for' do
       it { state.next_for('non-existent').should == nil }
@@ -38,55 +44,61 @@ describe James::State do
         state.expand(:a => 1).should == { :a => 1 }
       end
     end
-    describe 'enter' do
-      it 'is conditionally called' do
-        state.enter.should == nil # Order is important? UGH.
-      end
-      it 'is conditionally called' do
-        @context.stub! :enter_some_name => 'some answer'
-        
-        state.enter.should == 'some answer'
+    describe '__into__' do
+      it 'is called' do
+        state.__into__.should == nil
       end
     end
-    describe 'exit' do
+    describe '__exit__' do
       it 'is conditionally called' do
-        state.exit('phrase').should == nil # Order is important? UGH.
-      end
-      it 'is conditionally called' do
-        @context.stub! :exit_some_name => 'some answer'
-        
-        state.exit('phrase').should == 'some answer'
+        state.__exit__.should == nil
       end
     end
   end
   
-  context 'with 1 transition' do
-    let(:state) { described_class.new :some_name, @context, { 'transition one' => :next_state1 } }
+  context 'with 1 transition and into and exit' do
+    let(:state) do
+      described_class.new :some_name, @context do
+        hear 'transition one' => :next_state1
+        into { "hi there" }
+        exit { "good bye" }
+      end
+    end
     describe 'phrases' do
       it { state.phrases.should == ['transition one'] }
     end
     describe 'to_s' do
-      it { state.to_s.should == 'James::State(some_name, some context, {"transition one"=>:next_state1})' }
+      it { state.to_s.should == 'James::State(some_name, some_context, {"transition one"=>:next_state1})' }
     end
     describe 'next_for' do
       it { state.next_for('transition one').should == :some_state_object1 }
       it { state.next_for('non-existent').should == nil }
     end
+    describe '__into__' do
+      it 'is called' do
+        state.__into__.should == 'hi there'
+      end
+    end
+    describe '__exit__' do
+      it 'is conditionally called' do
+        state.__exit__.should == 'good bye'
+      end
+    end
   end
   
   context 'with multiple transition' do
     let(:state) do
-      described_class.new :some_name, @context, {
-        'transition one' => :next_state1,
-        'transition two' => :next_state2,
-        'transition three' => :next_state3
-      }
+      described_class.new :some_name, @context do
+        hear 'transition one'   => :next_state1,
+             'transition two'   => :next_state2,
+             'transition three' => :next_state3
+      end
     end
     describe 'phrases' do
       it { state.phrases.should == ['transition one', 'transition two', 'transition three'] }
     end
     describe 'to_s' do
-      it { state.to_s.should == 'James::State(some_name, some context, {"transition one"=>:next_state1, "transition two"=>:next_state2, "transition three"=>:next_state3})' }
+      it { state.to_s.should == 'James::State(some_name, some_context, {"transition one"=>:next_state1, "transition two"=>:next_state2, "transition three"=>:next_state3})' }
     end
     it { state.next_for('transition two').should == :some_state_object2 }
     it { state.next_for('non-existent').should == nil }

@@ -1,5 +1,3 @@
-framework 'AppKit'
-
 require File.expand_path '../inputs/base', __FILE__
 require File.expand_path '../inputs/audio', __FILE__
 require File.expand_path '../inputs/terminal', __FILE__

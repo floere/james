@@ -1,4 +1,5 @@
-require File.expand_path '../state', __FILE__
+require File.expand_path '../state_api', __FILE__
+require File.expand_path '../state_internals', __FILE__
 
 module James
 
@@ -9,15 +10,6 @@ module James
 
     def self.included into
       into.extend ClassMethods
-      Dialogues << into
-    end
-
-    def self.define &block
-      dialogue = Class.new do
-        include James::Dialogue
-      end
-      dialogue.class_eval &block
-      Dialogues << dialogue
     end
 
     #
@@ -34,9 +26,6 @@ module James
         define_method :entries do
           definition
         end
-      end
-      def exits *phrases
-
       end
 
       # Defines a state with transitions.
