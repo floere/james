@@ -1,0 +1,18 @@
+h1. James
+
+A voice controlled electronic butler
+
+h2. Requirements
+
+* OSX
+* MacRuby
+
+h2. Examples
+
+```
+
+```
+
+```ruby
+  
+```
