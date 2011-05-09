@@ -19,7 +19,7 @@ h2. Examples
 
 All examples can be found in @/examples@.
 
-Create a file called @time_dialogue.rb@ (or @time_dialog.rb@, James doesn't mind Americans):
+Create a file called @time_dialogue.rb@ (or @time_dialog.rb@, James doesn't mind Americans ;) ):
 
 <pre><code>class TimeDialogue
 
@@ -54,6 +54,8 @@ and it will include all dialogues in this directory.
 Or
 <pre><code>$ james time joke twitter</code></pre>
 and it will include the time dialogue, the joke dialogue, and the twitter dialogue.
+
+Note: The @james@ executable looks for files called @_dialog{ue,}.rb@ and includes them.
 
 h3. Short Version
 
