@@ -1,5 +1,6 @@
 require File.expand_path '../state_api', __FILE__
 require File.expand_path '../state_internals', __FILE__
+require File.expand_path '../dialogues', __FILE__
 
 module James
 
