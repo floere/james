@@ -32,7 +32,9 @@ module James
 
       # Defines a state with transitions.
       #
-      # state :name, { states }
+      # state :name do
+      #   # state properties (hear, into, exit) go here.
+      # end
       #
       attr_reader :states
       def state name, &block
