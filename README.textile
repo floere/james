@@ -120,7 +120,7 @@ end</code></pre>
 
 h2. Contributions
 
-Contributions: @/contributions@ Thanks!
+Contributions are in the @/examples@ folder. Just send me a gist, and I'll add it :) Thanks!
 
 h2. MIT License
 
