@@ -61,7 +61,7 @@ Note: The @james@ executable looks for files called  and includes them.
 
 h3. Short Version
 
-There is a short, anonymous dialog version, using @James.dialogue@.
+There is a short, anonymous dialogue version, using @James.dialogue@ aka @James.dialog@.
 
 <pre><code>James.dialogue do
 
