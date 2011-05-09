@@ -48,14 +48,16 @@ Running it is easy. Either use
 <pre><code>require 'james'</code></pre>
 in your script, and call it by using
 <pre><code>ruby time_dialogue.rb</code></pre>
-or else, in the terminal, just call
+
+Or else, in the terminal, just call
 <pre><code>$ james</code></pre>
-and it will include all dialogues in this directory.
-Or
+and it will include all dialogues (files called @_dialog{ue,}.rb@) in this directory. E.g. @joke_dialog.rb@, @tweets_dialogue.rb@, or @monkey_dialog.rb@.
+
+You can select dialogues using their first file name part
 <pre><code>$ james time joke twitter</code></pre>
 and it will include the time dialogue, the joke dialogue, and the twitter dialogue.
 
-Note: The @james@ executable looks for files called @_dialog{ue,}.rb@ and includes them.
+Note: The @james@ executable looks for files called  and includes them.
 
 h3. Short Version
 
