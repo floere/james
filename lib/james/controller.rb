@@ -110,6 +110,11 @@ module James
 
       app.run
     end
+    # Simply put, if there is a controller, it is listening.
+    #
+    def listening?
+      true
+    end
 
   end
 

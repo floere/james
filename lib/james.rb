@@ -11,8 +11,14 @@ require File.expand_path '../james/controller', __FILE__
 
 module James
 
+  # Start a new controller and listen.
+  #
+  # Will not listen again if already listening.
+  #
   def self.listen
-    Controller.new.listen
+    return if @controller && @controller.listening?
+    @controller ||= Controller.new
+    @controller.listen
   end
 
 end
