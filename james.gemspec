@@ -12,8 +12,8 @@ Gem::Specification.new do |s|
 
   s.homepage = 'http://floere.github.com/james'
 
-  s.description = 'Modular Electronic Butler. Using a simple dialog(ue) system where you can easily add more dialog(ue)s.'
-  s.summary = 'James: Modular Electronic Butler.'
+  s.description = 'Modular Electronic Butler. Using a simple dialogue system where you can easily add more dialogues.'
+  s.summary = 'James: Modular Electronic Butler with modular Dialogues.'
 
   s.files = Dir["lib/**/*.rb", "aux/**/*.rb"]
   s.test_files = Dir["spec/**/*_spec.rb"]
