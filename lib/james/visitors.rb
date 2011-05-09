@@ -28,23 +28,33 @@ module James
     # After that, all remaining visitors are reset.
     #
     def hear phrase, &block
-      iterator = visitors.each
+      enumerator = visitors.dup
 
-      while visitor = iterator.next
+      while visitor = enumerator.shift
         visitor.hear phrase, &block and break
       end
 
-      while visitor = iterator.next
+      while visitor = enumerator.shift
         visitor.reset
       end
-    rescue StopIteration
-      # That's ok! Nothing to do here.
+    end
+
+    # Enter enters the first dialogue.
+    #
+    def enter
+      visitors.first.enter
     end
 
     # Simply returns the sum of what phrases all dialogues expect.
     #
+    # Stops as soon as a visitor is not in a chainable state anymore.
+    #
     def expects
-      visitors.inject([]) { |expects, visitor| expects + visitor.expects }
+      visitors.inject([]) do |expects, visitor|
+        total = expects + visitor.expects
+        break total unless visitor.chainable?
+        total
+      end
     end
 
   end

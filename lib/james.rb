@@ -2,6 +2,7 @@ module James; end
 
 require File.expand_path '../james/timer', __FILE__
 require File.expand_path '../james/visitor', __FILE__
+require File.expand_path '../james/visitors', __FILE__
 require File.expand_path '../james/dialogues', __FILE__
 
 require File.expand_path '../james/dialogue_api', __FILE__

@@ -11,7 +11,7 @@ module James
 
     def self.included into
       into.extend ClassMethods
-      Dialogues << into
+      Dialogues << into unless into == CoreDialogue # TODO Dirty as hell.
     end
 
     #

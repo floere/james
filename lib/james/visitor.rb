@@ -66,6 +66,15 @@ module James
     def expects
       current.phrases
     end
+    # Does the current state allow penetration into another dialogue?
+    #
+    def chainable?
+      current.chainable?
+    end
+
+    def to_s
+      "#{self.class.name}(#{initial}, current: #{current})"
+    end
 
   end
 
