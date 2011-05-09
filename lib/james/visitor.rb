@@ -21,13 +21,13 @@ module James
       @current = initial
 
       @initial = initial
-      @timer   = timer || Timer.new
+      # @timer   = timer || Timer.new
     end
 
     # Escapes the current state back to the initial.
     #
-    def escape
-      timer.stop
+    def reset
+      # timer.stop
       self.current = initial
     end
 
@@ -53,7 +53,7 @@ module James
     end
     def hear phrase, &block
       return unless hears? phrase
-      timer.restart
+      # timer.restart
       exit_text = exit &block
       transition phrase
       check &block

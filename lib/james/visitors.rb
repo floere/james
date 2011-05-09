@@ -22,12 +22,27 @@ module James
       @visitors = visitors
     end
 
+    # Hear tries all visitors in order
+    # until one hears a phrase he knows.
+    #
+    # After that, all remaining visitors are reset.
+    #
     def hear phrase, &block
-      visitors.each do |visitor|
+      iterator = visitors.each
+
+      while visitor = iterator.next
         visitor.hear phrase, &block and break
       end
+
+      while visitor = iterator.next
+        visitor.reset
+      end
+    rescue StopIteration
+      # That's ok! Nothing to do here.
     end
 
+    # Simply returns the sum of what phrases all dialogues expect.
+    #
     def expects
       visitors.inject([]) { |expects, visitor| expects + visitor.expects }
     end

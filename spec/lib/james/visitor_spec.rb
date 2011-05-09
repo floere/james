@@ -8,6 +8,30 @@ describe James::Visitor do
   let(:timer)   { stub :timer }
   let(:visitor) { described_class.new initial, timer }
   
+  describe 'reset' do
+    it 'works' do
+      expect { visitor.reset }.to_not raise_error
+    end
+    # it 'calls methods in order' do
+    #   timer.should_receive(:stop).once.with
+    #   visitor.should_receive(:current=).once.with initial
+    # 
+    #   visitor.reset
+    # end
+    it 'survives a functional test' do
+      next_state = stub :next_state
+      initial.stub! :next_for => next_state
+      
+      visitor.current.should == initial
+      visitor.transition :some_phrase
+      visitor.current.should == next_state
+      
+      visitor.reset
+      
+      visitor.current.should == initial
+    end
+  end
+  
   describe 'current' do
     it { visitor.current.should == initial }
   end
@@ -62,19 +86,10 @@ describe James::Visitor do
     end
   end
   
-  describe 'escape' do
-    it 'calls methods in order' do
-      timer.should_receive(:stop).once.with
-      visitor.should_receive(:current=).once.with initial
-      
-      visitor.escape
-    end
-  end
-  
   describe 'hear' do
     it 'calls methods in order' do
       visitor.should_receive(:hears?).once.ordered.with(:some_phrase).and_return true
-      timer.should_receive(:restart).once.ordered.with
+      # timer.should_receive(:restart).once.ordered.with
       visitor.should_receive(:exit).once.ordered.with
       visitor.should_receive(:transition).once.ordered.with :some_phrase
       # visitor.should_receive(:check).once.ordered.with

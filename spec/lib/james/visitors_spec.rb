@@ -15,11 +15,14 @@ describe James::Visitors do
         second.stub! :hear => nil
       end
       it 'works' do
+        second.stub! :reset
+        
         visitors.hear 'some phrase'
       end
       it 'calls the second never' do
         first.should_receive(:hear).once.and_return true
         second.should_receive(:hear).never
+        second.should_receive(:reset).once
         
         visitors.hear 'some phrase'
       end
