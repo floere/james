@@ -5,15 +5,15 @@ class CoreDialogue
   state :awake do
     chainable # If James is awake, he offers more dialogues on this state, if there are any.
 
-    hear 'Leave me alone, James.'                  => :away,
-         "That's it for today, James."             => :exit,
-         "Something else, James."                  => :awake
+    hear 'I need some time alone, James.'          => :away,
+         "Good night, James."                      => :exit,
+         ["Thank you, James.", "Thanks, James."]   => :awake
     into { "Sir?" }
   end
 
   state :away do
-    hear 'James?'                      => :awake,
-         "That's it for today, James." => :exit
+    hear 'James?'             => :awake,
+         "Good night, James." => :exit
     into { "Of course, Sir!" }
   end
 
