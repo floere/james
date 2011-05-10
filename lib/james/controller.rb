@@ -15,6 +15,9 @@ module James
 
     attr_reader :visitor
 
+    # This puts together the core dialogue and the user
+    # ones that are hooked into it.
+    #
     def initialize
       user_visitor   = initialize_dialogues.visitor
       system_visitor = Visitor.new CoreDialogue.new.state_for(:awake)
@@ -23,7 +26,6 @@ module James
 
     def applicationDidFinishLaunching notification
       load_voices
-
       start_output
       start_input
     end
@@ -48,11 +50,10 @@ module James
       # male: com.apple.speech.synthesis.voice.Bruce
     end
 
+    # Initialize and "parse" the
+    # dialogues.
+    #
     def initialize_dialogues
-      # Create the main dialogue.
-      #
-      # Everybody hooks into this, then.
-      #
       dialogues = Dialogues.new
       dialogues.resolve
       dialogues
@@ -105,8 +106,6 @@ module James
 
       # window.display
       # window.orderFrontRegardless
-
-      app.delegate.applicationDidFinishLaunching nil
 
       app.run
     end

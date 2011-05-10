@@ -19,7 +19,7 @@ module James
   class << self
 
     def dialogue &block
-      dialogue = Class.new { include Dialogue }
+      dialogue = Class.new { include James::Dialogue }
       dialogue.class_eval &block
       dialogue
     end

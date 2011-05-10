@@ -10,14 +10,3 @@ class TimeDialogue
   end
 
 end
-
-# James.dialogue do
-#
-# end
-#
-# equals
-#
-# Class.new do
-#   include James::Dialogue
-#
-# end

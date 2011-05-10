@@ -9,12 +9,12 @@ module James
         @recognizer = NSSpeechRecognizer.alloc.init
         @recognizer.setBlocksOtherRecognizers true
         @recognizer.setListensInForegroundOnly false
-        recognize_new_commands
         @recognizer.setDelegate self
       end
 
       def listen
         @recognizer.startListening
+        recognize_new_commands
       end
       def heard command
         super
