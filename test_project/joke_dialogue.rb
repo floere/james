@@ -6,7 +6,7 @@ require File.expand_path '../../lib/james', __FILE__
 class JokeDialogue
   include James::Dialogue
 
-  hear 'tell me a joke' => :joke
+  hear 'Tell me a joke' => :joke
 
   state :joke do
     jokes = [

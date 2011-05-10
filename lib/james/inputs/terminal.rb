@@ -8,10 +8,11 @@ module James
 
       def listen
         loop do
-          puts %Q{What would you like? Possibilities include\n"#{controller.expects.join('", "')}"}
+          possibilities = controller.expects
+          puts "Possibilities:\n  #{possibilities.join("\n  ")}"
           command = gets.chop
           puts "I heard '#{command}'."
-          heard command if controller.expects.include? command
+          heard command if possibilities.include? command
         end
       end
 

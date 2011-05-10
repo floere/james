@@ -30,7 +30,9 @@ module James
         heard command
       end
       def recognize_new_commands
-        @recognizer.setCommands controller.expects
+        possibilities = controller.expects
+        puts "Possibilities:\n  #{possibilities.join("\n  ")}"
+        @recognizer.setCommands possibilities
       end
 
     end

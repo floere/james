@@ -26,13 +26,8 @@ module James
 
       start_output
       start_input
-
-      visitor.enter { |text| say text }
-
-      @input.listen
     end
     def windowWillClose notification
-      puts "James is going to bed."
       exit
     end
 
@@ -66,6 +61,7 @@ module James
     #
     def start_input
       @input = Inputs::Audio.new self
+      @input.listen
     end
     # Start speaking.
     #
@@ -84,9 +80,7 @@ module James
       end
     end
     def expects
-      possibilities = @visitor.expects
-      puts "Possibilities:\n  #{possibilities.join("\n  ")}"
-      possibilities
+      @visitor.expects
     end
 
     def listen
