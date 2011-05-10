@@ -76,6 +76,17 @@ describe James::State do
     end
   end
   
+  context 'with a returning transition' do
+    let(:state) do
+      described_class.new :some_name, @context do
+        hear 'transition one' => lambda { "I do this and return to :some_name" }
+      end
+    end
+    describe 'phrases' do
+      it { state.phrases.should == ['transition one'] }
+    end
+  end
+  
   context 'with 1 transition and into and exit' do
     let(:state) do
       described_class.new :some_name, @context do
@@ -106,12 +117,12 @@ describe James::State do
     end
   end
   
-  context 'with multiple transition' do
+  context 'with multiple transition and separate hears' do
     let(:state) do
       described_class.new :some_name, @context do
         hear 'transition one'   => :next_state1,
-             'transition two'   => :next_state2,
-             'transition three' => :next_state3
+             'transition two'   => :next_state2
+        hear 'transition three' => :next_state3
       end
     end
     describe 'phrases' do
@@ -121,6 +132,7 @@ describe James::State do
       it { state.to_s.should == 'James::State(some_name, some_context, {"transition one"=>:next_state1, "transition two"=>:next_state2, "transition three"=>:next_state3})' }
     end
     it { state.next_for('transition two').should == :some_state_object2 }
+    it { state.next_for('transition three').should == :some_state_object3 }
     it { state.next_for('non-existent').should == nil }
   end
   

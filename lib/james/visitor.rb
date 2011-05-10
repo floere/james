@@ -46,10 +46,15 @@ module James
       result
     end
     def transition phrase
-      self.current = current.next_for phrase
+      state_or_lambda = current.next_for phrase
+      if state_or_lambda.respond_to?(:call)
+        state_or_lambda.call # Don't transition.
+      else
+        self.current = state_or_lambda
+      end
     end
     def check
-      escape && yield("That led nowhere.") unless current
+      escape && yield("That led nowhere.") unless self.current
     end
     def hear phrase, &block
       return unless hears? phrase

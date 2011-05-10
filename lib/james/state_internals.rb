@@ -13,11 +13,14 @@ module James
 
     # Returns the next state for the given phrase.
     #
-    # It accesses the context (Dialog(ue)) to get a full object state.
+    # It accesses the context (aka Dialog(ue)) to get a full object state.
+    #
+    # If it is a Symbol, James will try to get the real state.
+    # If not, it will just return it (a State already, or lambda).
     #
     def next_for phrase
       state = self.transitions[phrase]
-      state.respond_to?(:phrases) ? state : context.state_for(state)
+      state.respond_to?(:id2name) ? context.state_for(state) : state
     end
 
     def __into__
