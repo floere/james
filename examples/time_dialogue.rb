@@ -25,3 +25,5 @@ class TimeDialogue
   end
 
 end
+
+James.listen
