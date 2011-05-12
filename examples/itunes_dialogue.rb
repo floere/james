@@ -6,7 +6,7 @@ class ItunesDialogue
 
   include James::Dialogue
 
-  hear 'Open itunes' => :itunes
+  hear 'Open iTunes and play' => :itunes
   state :itunes do
     hear 'Next track' => ->() do
       `osascript -e 'tell application "iTunes"' -e "next track" -e "end tell"`

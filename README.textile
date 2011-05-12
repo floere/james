@@ -5,7 +5,7 @@ A voice controlled electronic butler
 h2. Requirements
 
 * OSX
-* MacRuby
+* MacRuby (install rvm, @rvm install macruby@)
 
 h2. Installation
 
@@ -17,7 +17,7 @@ James consists of dialog(ue)s that are modeled as state machines. You navigate t
 
 h2. Examples
 
-All examples can be found in @/examples@.
+All examples can be found in "/examples":http://github.com/floere/james/tree/master/examples.
 
 Create a file called @time_dialogue.rb@ (or @time_dialog.rb@, James doesn't mind Americans ;) ):
 
@@ -120,7 +120,8 @@ end</code></pre>
 
 h2. Contributions
 
-Contributions are in the @/examples@ folder. Just send me a gist, and I'll add it :) Thanks!
+Contributions are in the "/examples":http://github.com/floere/james/tree/master/examples folder.
+Sending dialogue gists is appreciated. Thanks!
 
 h2. MIT License
 

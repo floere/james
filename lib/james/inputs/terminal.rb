@@ -7,6 +7,7 @@ module James
     class Terminal < Base
 
       def listen
+        sleep 2
         loop do
           possibilities = controller.expects
           puts "Possibilities:\n  #{possibilities.join("\n  ")}"
