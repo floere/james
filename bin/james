@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 #
 
-# james joke phonebook quote
+# james joke phonebook quote # Uses just the described ones.
 # OR
-# james # Uses Dir.pwd
+# james # Uses all it can find.
 #
 
 begin

@@ -17,7 +17,7 @@ class TimeDialogue
 
   hear 'What time is it?' => :time
   state :time do
-    hear ['What time is it?', 'What time is it now?'] => :time
+    hear ['What time is it?', 'What time is it now?'] => :tim
     into do
       time = Time.now
       "It is currently #{time.hour} #{time.min}."

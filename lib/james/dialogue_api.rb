@@ -16,6 +16,10 @@ module James
   #
   module Dialogue; end
 
+  # We don't care about the spelling.
+  #
+  Dialog = Dialogue
+
   class << self
 
     def dialogue &block

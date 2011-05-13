@@ -1,14 +1,5 @@
 framework 'AppKit'
 
-require File.expand_path '../inputs/base', __FILE__
-require File.expand_path '../inputs/audio', __FILE__
-require File.expand_path '../inputs/terminal', __FILE__
-
-require File.expand_path '../outputs/audio', __FILE__
-require File.expand_path '../outputs/terminal', __FILE__
-
-require File.expand_path '../builtin/core_dialogue', __FILE__
-
 module James
 
   class Controller
@@ -36,18 +27,7 @@ module James
     # Load voices from yaml.
     #
     def load_voices
-      # yaml_voices = ''
-      # File.open('voices.yml') do |f| yaml_voices << f.read end
-      # voices = YAML.load(yaml_voices)
-      # @male_voice = voices['male']
-      # @female_voice = voices['female']
-      # Commented voices are Apple built-in voices. Can be changed by replacing the last part e.g.'Vicki' with e.g.'Laura'
-      # much better female voice from iVox:
-      # female: com.acapela.iVox.voice.iVoxHeather22k
-      # much better male voice from iVox:
-      # male: com.acapela.iVox.voice.iVoxRyan22k
-      # female: com.apple.speech.synthesis.voice.Vicki
-      # male: com.apple.speech.synthesis.voice.Bruce
+      # TODO
     end
 
     # Initialize and "parse" the
@@ -61,7 +41,7 @@ module James
     # Start recognizing words.
     #
     def start_input
-      @input = Inputs::Audio.new self
+      @input = Inputs::Terminal.new self
       @input.listen
     end
     # Start speaking.

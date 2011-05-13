@@ -1,5 +1,3 @@
-require File.expand_path '../timer', __FILE__
-
 module James
 
   # The visitor knows where in the conversation we are.

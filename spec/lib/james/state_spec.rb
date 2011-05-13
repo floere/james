@@ -136,4 +136,21 @@ describe James::State do
     it { state.next_for('non-existent').should == nil }
   end
   
+  context 'with self-transitions' do
+    some_proc = ->(){ "Going back to where I came from" }
+    let(:state) do
+      described_class.new :some_name, @context do
+        hear 'transition one' => some_proc
+      end
+    end
+    describe 'phrases' do
+      it { state.phrases.should == ['transition one'] }
+    end
+    describe 'to_s' do
+      it { state.to_s.should == "James::State(some_name, some_context, {\"transition one\"=>#{some_proc}})" }
+    end
+    it { state.next_for('transition one').should == some_proc }
+    it { state.next_for('non-existent').should == nil }
+  end
+  
 end

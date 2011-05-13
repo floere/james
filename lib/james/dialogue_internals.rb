@@ -1,7 +1,3 @@
-require File.expand_path '../state_api', __FILE__
-require File.expand_path '../state_internals', __FILE__
-require File.expand_path '../dialogues', __FILE__
-
 module James
 
   # A dialogue is just a container object
@@ -53,9 +49,5 @@ module James
     end
 
   end
-
-  # We don't care about the spelling.
-  #
-  Dialog = Dialogue
 
 end

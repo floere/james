@@ -1,5 +1,3 @@
-require File.expand_path '../visitor', __FILE__
-
 module James
 
   # Registers all dialogues and connects their states.
@@ -42,6 +40,8 @@ module James
         end
       end
 
+      # Hook all user dialogues into the initial state.
+      #
       initial.hear resolved_entries
     end
 

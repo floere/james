@@ -1,0 +1,57 @@
+This is the directory for contributed examples.
+
+They should always be of the form:
+
+<pre><code>  # If using the gem, replace with: require 'james'
+  #
+  require File.expand_path '../../lib/james', __FILE__
+
+  class ItunesDialogue
+
+    include James::Dialogue
+
+    # You dialogue definitions go here.
+
+  end
+
+  # This line is for running it standalone.
+  #
+  James.listen</code></pre>
+
+One example is the following simple one:
+
+<pre><code>  # If using the gem, replace with: require 'james'
+  #
+  require File.expand_path '../../lib/james', __FILE__
+
+  class ItunesDialogue
+
+    include James::Dialogue
+
+    def initialize
+      # Usually though it's a good idea to set it up in the actions:
+      # @setup_thing ||= Thing.new
+      # @setup_thing.do_something
+      #
+      @setup_thing = Thing.new
+    end
+
+    hear 'My useful initial phrase' => :my_initial_state
+    state :my_initial_state do
+      hear 'something'                   => :next_state
+      hear 'something and stay in state' => ->(){ "I am saying this but staying in this state" }
+      into do
+        "Say something on entering"
+      end
+      exit do
+        "Say something on exiting"
+      end
+    end
+
+  end
+
+  # This line is for running it standalone.
+  #
+  James.listen</code></pre>
+
+Please see the many examples in this folder.

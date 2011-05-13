@@ -10,6 +10,8 @@ module James
         @controller = controller
       end
 
+      # Call this method if you heard something in the subclass.
+      #
       def heard command
         # Call dialogue.
         #

@@ -123,6 +123,15 @@ h2. Contributions
 Contributions are in the "/examples":http://github.com/floere/james/tree/master/examples folder.
 Sending dialogue gists is appreciated. Thanks!
 
+h2. Running the specs
+
+@rspec spec@
+
+h2. Roadmap
+
+* Make James (e.g. voice, core dialogue) configurable.
+* Add more useful dialogues.
+
 h2. MIT License
 
 Copyright (c) 2011 Florian Hanke

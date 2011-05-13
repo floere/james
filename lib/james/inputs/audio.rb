@@ -26,6 +26,8 @@ module James
 
       # Callback method from the speech interface.
       #
+      # Note: Uses a MacRuby only form.
+      #
       def speechRecognizer sender, didRecognizeCommand: command
         heard command
       end

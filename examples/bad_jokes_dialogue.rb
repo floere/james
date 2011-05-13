@@ -1,9 +1,18 @@
+# If using the gem, replace with: require 'james'
+#
 require File.expand_path '../../lib/james', __FILE__
 
-# Little parody on the existing OSX joke
-# telling system.
+# Time dialogue by Florian Hanke.
+#
+# This is a very simple James example.
+#
+# It has only one state, :joke, and a single
+# entry/hook phrase, "Tell me a joke"
+#
+# Improve the jokes ;)
 #
 class JokeDialogue
+
   include James::Dialogue
 
   hear 'Tell me a joke' => :joke
@@ -17,9 +26,9 @@ class JokeDialogue
       'What\'s the difference between a jeweler and a jailor? ... ... One sells watches, and the other watches cells.',
       'What did the elephant say to the naked man? ... ... How do you breathe through that thing?'
     ]
-    hear 'another one'
+    hear 'Another one'
     into do
-      jokes[rand(jokes.size)] + "... ... ... Ha ha ha."
+      "#{jokes[rand(jokes.size)]} ... ... ... Ha ha ha."
     end
   end
 

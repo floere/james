@@ -1,0 +1,8 @@
+h2. Version 0.0.7
+
+* hanke: @hear@ method of state now also takes as target a @->(){}@ lambda to execute without going to another state like @'phrase' => :another_state@. It stays in the same state.
+
+h2. Version 0.0.6
+
+* hanke: Dialogues implemented.
+* hanke: Dialogues are hooked up to a central control dialogue.

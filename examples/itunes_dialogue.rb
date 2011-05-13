@@ -2,6 +2,15 @@
 #
 require File.expand_path '../../lib/james', __FILE__
 
+# iTunes dialogue by Florian Hanke.
+#
+# This is a very simple James example.
+#
+# It has only one state, :time, and a single
+# entry/hook phrase, "What time is it?"
+#
+# How could you enhance it to answer "What date is it?" ?
+#
 class ItunesDialogue
 
   include James::Dialogue
@@ -23,3 +32,5 @@ class ItunesDialogue
   end
 
 end
+
+James.listen
