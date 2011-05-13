@@ -50,7 +50,7 @@ describe James::Visitors do
         first.stub!  :expects => [:a, :b], :chainable? => true
         second.stub! :expects => [:c, :d, :e], :chainable? => true
       end
-      it { visitors.expects.should == [:a, :b, :c, :d, :e] }
+      it { visitors.expects.should == [:c, :d, :e, :a, :b] }
     end
     context 'not chainable' do
       before(:each) do

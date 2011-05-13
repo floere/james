@@ -51,7 +51,7 @@ module James
     #
     def expects
       visitors.inject([]) do |expects, visitor|
-        total = expects + visitor.expects
+        total = visitor.expects + expects
         break total unless visitor.chainable?
         total
       end
