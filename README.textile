@@ -134,10 +134,10 @@ h2. Roadmap
 
 h2. Ideas
 
-#. Put it on a Mac Mini, attach a few microphones, distribute in the house.
-#. Create a few useful dialogues, like a train timetable, or similar.
-#. Sit on your sofa, and talk to James out loud.
-#. Send us your dialogues :)
+# Put it on a Mac Mini, attach a few microphones, distribute in the house.
+# Create a few useful dialogues, like a train timetable, or similar.
+# Sit on your sofa, and talk to James out loud.
+# Send us your dialogues :)
 
 h2. MIT License
 
