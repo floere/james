@@ -19,9 +19,9 @@ class CoreDialogue
     #
     chainable
 
-    hear 'I need some time alone, James.' => :away,
-         "Good night, James."             => :exit,
-         "Thank you, James."              => :awake
+    hear "Thank you, James."              => :awake,
+         'I need some time alone, James.' => :away,
+         "Good night, James."             => :exit
     into { "Sir?" }
   end
 
