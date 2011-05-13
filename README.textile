@@ -130,7 +130,14 @@ h2. Running the specs
 h2. Roadmap
 
 * Make James (e.g. voice, core dialogue) configurable.
-* Add more useful dialogues.
+* Add more useful dialogues made by YOU :)
+
+h2. Ideas
+
+#. Put it on a Mac Mini, attach a few microphones, distribute in the house.
+#. Create a few useful dialogues, like a train timetable, or similar.
+#. Sit on your sofa, and talk to James out loud.
+#. Send us your dialogues :)
 
 h2. MIT License
 
