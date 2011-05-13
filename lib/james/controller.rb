@@ -41,7 +41,7 @@ module James
     # Start recognizing words.
     #
     def start_input
-      @input = Inputs::Terminal.new self
+      @input = Inputs::Audio.new self
       @input.listen
     end
     # Start speaking.
