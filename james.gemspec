@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.platform = Gem::Platform::CURRENT
 
   s.name = 'james'
-  s.version = '0.0.10'
+  s.version = '0.0.11'
 
   s.author = 'Florian Hanke'
   s.email = 'florian.hanke+james@gmail.com'
