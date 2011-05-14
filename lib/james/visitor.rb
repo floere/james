@@ -22,7 +22,7 @@ module James
       # @timer   = timer || Timer.new
     end
 
-    # Escapes the current state back to the initial.
+    # Resets the current state back to the initial.
     #
     def reset
       # timer.stop
@@ -52,7 +52,7 @@ module James
       end
     end
     def check
-      escape && yield("That led nowhere.") unless self.current
+      reset && yield("Whoops. That led nowhere. Perhaps you didn't define the target state?") unless self.current
     end
     def hear phrase, &block
       return unless hears? phrase
