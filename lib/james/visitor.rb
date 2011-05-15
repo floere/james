@@ -8,6 +8,9 @@ module James
   # Note: A visitor should generally be very stupid.
   # Note 2: We could call this Hearing, or Ear ;)
   #
+  # TODO Add a timer which resets the state to the
+  #      initial state.
+  #
   class Visitor
 
     attr_reader   :initial, :timer
