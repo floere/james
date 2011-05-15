@@ -1,5 +1,6 @@
 # encoding: utf-8
 #
+require File.expand_path '../../../../lib/james/state_api', __FILE__
 require File.expand_path '../../../../lib/james/dialogue_api', __FILE__
 require File.expand_path '../../../../lib/james/dialogue_internals', __FILE__
 require File.expand_path '../../../../lib/james/builtin/core_dialogue', __FILE__
@@ -40,6 +41,29 @@ describe James::Dialogue do
       end
       it 'returns nil on not found' do
         dialogue.new.state_for(:nonexistent).should == nil
+      end
+    end
+  end
+  
+  describe 'hear with lambda' do
+    let(:dialogue) do
+      class Test
+        include James::Dialogue
+        
+        def initialize
+          @bla = 'some bla'
+        end
+        
+        state :test do
+          hear 'bla' => ->(){ @bla }
+        end
+      end
+      Test.new
+    end
+    it "is instance eval'd" do
+      test_state = dialogue.state_for :test
+      test_state.hear 'bla' do |result|
+        result.should == 'some bla'
       end
     end
   end
