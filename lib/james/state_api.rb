@@ -38,8 +38,8 @@ module James
     # Example for staying in the same state:
     #   hear 'What time is it?' # Implicitly staying.
     #
-    # Note: We could expand on this with
-    #   hear 'What time is it?' => lambda { Do something here with the time, returns to same state }
+    # Example for staying in the same state and doing something:
+    #   hear 'What time is it?' => ->() { "I'm staying in the same state" }
     #
     def hear transitions
       transitions = { transitions => name } unless transitions.respond_to?(:to_hash)
