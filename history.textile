@@ -1,6 +1,6 @@
 h2. Version 0.0.12
 
-* hanke: hear 'Stay in same state' => ->(){ "This block will now be instance eval'd in the context of the Dialogue" }
+* hanke: @hear 'Stay in same state' => ->(){ "This block will now be instance eval'd in the context of the Dialogue" }@
 
 h2. Version 0.0.11
 
