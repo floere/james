@@ -18,3 +18,7 @@ h2. Version 0.0.6
 
 * hanke: Dialogues implemented.
 * hanke: Dialogues are hooked up to a central control dialogue.
+
+h2. Version 0.0.1-0.0.5
+
+* hanke: James steps out of the cave. Utters an "Ugh". Then, pees on a berry bush.
