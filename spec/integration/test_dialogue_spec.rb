@@ -36,22 +36,6 @@ describe 'TestDialogue' do
         visitor.hear('stay') {}
         visitor.current.name.should == :first
       end
-      it 'calls the entrance/exits correctly' do
-        dialogue.should_receive(:respond_to?).once.with(:enter_second).and_return true
-        dialogue.should_receive(:enter_second).once
-
-        dialogue.should_receive(:respond_to?).once.with(:exit_second).and_return true
-        dialogue.should_receive(:exit_second).once
-
-        dialogue.should_receive(:respond_to?).once.with(:enter_first).and_return true
-        dialogue.should_receive(:enter_first).once
-
-        dialogue.should_receive(:respond_to?).once.with(:exit_first).and_return true
-        dialogue.should_receive(:exit_first).once
-
-        visitor.hear 'go'
-        visitor.hear 'back'
-      end
     end
   end
   

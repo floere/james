@@ -28,9 +28,9 @@ module James
       #
       # Note: Uses a MacRuby only form.
       #
-      def speechRecognizer sender, didRecognizeCommand: command
-        heard command
-      end
+      # def speechRecognizer sender, didRecognizeCommand: command
+      #   heard command
+      # end
       def recognize_new_commands
         possibilities = controller.expects
         puts "Possibilities:\n  #{possibilities.join("\n  ")}"

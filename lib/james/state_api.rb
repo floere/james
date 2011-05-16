@@ -58,6 +58,12 @@ module James
       @exit_block = block
     end
 
+    #
+    #
+    def transition &block
+      
+    end
+
     # By default, a state is not chainable.
     #
     def chainable?

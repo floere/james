@@ -49,7 +49,7 @@ module James
     def transition phrase
       state_or_lambda = current.next_for phrase
       if state_or_lambda.respond_to?(:call)
-        state_or_lambda.call # Don't transition.
+        current.__transition__ &state_or_lambda # Don't transition.
       else
         self.current = state_or_lambda
       end

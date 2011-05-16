@@ -1,4 +1,4 @@
-framework 'AppKit'
+# framework 'AppKit'
 
 module James
 

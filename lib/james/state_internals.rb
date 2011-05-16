@@ -29,6 +29,9 @@ module James
     def __exit__
       @exit_block && context.instance_eval(&@exit_block)
     end
+    def __transition__ &block
+      context.instance_eval &block
+    end
 
   end
 
