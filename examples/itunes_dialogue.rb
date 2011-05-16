@@ -1,5 +1,7 @@
-# If using the gem, replace with: require 'james'
+# If using the gem, replace with:
 #
+# require 'rubygems'
+# require 'james'
 require File.expand_path '../../lib/james', __FILE__
 
 # iTunes dialogue by Florian Hanke.
