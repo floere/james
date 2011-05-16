@@ -1,5 +1,7 @@
-# If using the gem, replace with: require 'james'
+# If using the gem, replace with:
 #
+# require 'rubygems'
+# require 'james'
 require File.expand_path '../../lib/james', __FILE__
 
 # Time dialogue by Florian Hanke.
@@ -33,3 +35,5 @@ class JokeDialogue
   end
 
 end
+
+James.listen

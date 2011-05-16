@@ -2,8 +2,10 @@ This is the directory for contributed examples.
 
 They should always be of the form:
 
-<pre><code>  # If using the gem, replace with: require 'james'
+<pre><code>  # If using the gem, replace with:
   #
+  # require 'rubygems'
+  # require 'james'
   require File.expand_path '../../lib/james', __FILE__
 
   class ItunesDialogue
@@ -20,8 +22,10 @@ They should always be of the form:
 
 One example is the following simple one:
 
-<pre><code>  # If using the gem, replace with: require 'james'
+<pre><code>  # If using the gem, replace with:
   #
+  # require 'rubygems'
+  # require 'james'
   require File.expand_path '../../lib/james', __FILE__
 
   class ItunesDialogue
