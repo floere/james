@@ -5,14 +5,14 @@ require File.expand_path '../../../../aux/james/cli', __FILE__
 describe James::CLI do
   
   before(:each) do
-    Dir.stub! :[] => ['test_dialogue.rb', 'test_dialog.rb', 'test/test_dialogue.rb']
+    Dir.stub! :[] => ['test_dialog.rb', 'test_dialog.rb', 'test/test_dialog.rb']
   end
   
   let(:cli) { James::CLI.new }
   
-  describe 'find_dialogues' do
+  describe 'find_dialogs' do
     it 'returns the right ones' do
-      cli.find_dialogues.should == ['test_dialogue.rb', 'test_dialog.rb', 'test/test_dialogue.rb']
+      cli.find_dialogs.should == ['test_dialog.rb', 'test_dialog.rb', 'test/test_dialog.rb']
     end
   end
   

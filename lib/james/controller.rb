@@ -6,12 +6,12 @@ module James
 
     attr_reader :visitor
 
-    # This puts together the core dialogue and the user
+    # This puts together the core dialog and the user
     # ones that are hooked into it.
     #
     def initialize
-      user_visitor   = initialize_dialogues.visitor
-      system_visitor = Visitor.new CoreDialogue.new.state_for(:awake)
+      user_visitor   = initialize_dialogs.visitor
+      system_visitor = Visitor.new CoreDialog.new.state_for(:awake)
       @visitor       = Visitors.new system_visitor, user_visitor
     end
 
@@ -31,12 +31,12 @@ module James
     end
 
     # Initialize and "parse" the
-    # dialogues.
+    # dialogs.
     #
-    def initialize_dialogues
-      dialogues = Dialogues.new
-      dialogues.resolve
-      dialogues
+    def initialize_dialogs
+      dialogs = Dialogs.new
+      dialogs.resolve
+      dialogs
     end
     # Start recognizing words.
     #
@@ -50,7 +50,7 @@ module James
       @output = Outputs::Audio.new
     end
 
-    # Callback method from dialogue.
+    # Callback method from dialog.
     #
     def say text
       @output.say text

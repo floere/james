@@ -1,4 +1,4 @@
-# Note: This dialogue does not work yet due to a bug in MacRuby.
+# Note: This dialog does not work yet due to a bug in MacRuby.
 #
 require 'twitter'
 
@@ -8,13 +8,13 @@ require 'twitter'
 # require 'james'
 require File.expand_path '../../lib/james', __FILE__
 
-# Twitter dialogue by Florian Hanke.
+# Twitter dialog by Florian Hanke.
 #
 # This is a bit more complex example providing a self.configure method.
 #
-class TwitterDialogue
+class TwitterDialog
 
-  include James::Dialogue
+  include James::Dialog
 
   def self.configure from
 
@@ -37,6 +37,6 @@ end
 
 # This could be somewhere else of course.
 #
-TwitterDialogue.configure 'hanke'
+TwitterDialog.configure 'hanke'
 
 James.listen

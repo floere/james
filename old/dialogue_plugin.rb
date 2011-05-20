@@ -1,10 +1,10 @@
 require 'rubycocoa'
 
-# superclass for dialogue modules
-# dialogues move along the moves
+# superclass for dialog modules
+# dialogs move along the moves
 # if a state is entered, enter_#{state_name} is called
 # if a state is exited, exit_#{state_name} is called
-class DialoguePlugin
+class DialogPlugin
   
   # automatically adds a hook phrase
   # meaning: adds a move from :awake to this hook word
@@ -18,7 +18,7 @@ class DialoguePlugin
     }
   end
   
-  # returns the possible states of this dialogue
+  # returns the possible states of this dialog
   def possible_states
     @moves.keys
   end
@@ -49,7 +49,7 @@ class DialoguePlugin
     # TODO blah
   end
   
-  # hook words - these define when this dialogue is entered
+  # hook words - these define when this dialog is entered
   def hook_words(names = nil)
     names.each do |name|
        # TODO

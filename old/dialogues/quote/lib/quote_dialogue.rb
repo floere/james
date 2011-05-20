@@ -1,7 +1,7 @@
-require 'dialogue_extension'
+require 'dialog_extension'
 require 'quote_of_the_day'
 
-class QuoteDialogue < DialogueExtension
+class QuoteDialog < DialogExtension
   
   initial_state :quote
   hook_words 'quote of the day', 'quote'

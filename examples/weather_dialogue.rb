@@ -7,23 +7,23 @@ require File.expand_path '../../lib/james', __FILE__
 require 'rubygems'
 require 'barometer'
 
-# Weather dialogue by Florian Hanke.
+# Weather dialog by Florian Hanke.
 #
 # This is a very simple James example.
 #
 # Note: Currently it just a stub.
 #
-# Note 2: We need to enable Dialogue passing to James.listen
-#         to make dialogues configurable a la WeatherDialogue.for("Paris").
+# Note 2: We need to enable Dialog passing to James.use
+#         to make dialogs configurable a la WeatherDialog.for("Paris").
 #
-class WeatherDialogue
+class WeatherDialog
 
-  include James::Dialogue
+  include James::Dialog
 
-  def initialize
+  def initialize location
     Barometer.config = { 1 => [:yahoo, :google], 2 => :wunderground }
 
-    @barometer = Barometer.new "Melbourne"
+    @barometer = Barometer.new location
   end
 
   hear 'How is the weather?' => :weather
@@ -32,5 +32,7 @@ class WeatherDialogue
   end
 
 end
+
+James.use WeatherDialog.new('Melbourne')
 
 James.listen

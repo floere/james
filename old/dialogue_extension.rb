@@ -1,13 +1,13 @@
 # require 'cocoa'
 
 # TODO make   ['HB','berne','geneva'] => :from   possible using the splat operator
-# add ability to chain dialogues a la   chain_dialogue :state, <dialogue_name>
+# add ability to chain dialogs a la   chain_dialog :state, <dialog_name>
 
-# superclass for dialogue modules
-# dialogues move along the moves
+# superclass for dialog modules
+# dialogs move along the moves
 # if a state is entered, enter_#{state_name} is called
 # if a state is exited, exit_#{state_name} is called
-class DialogueExtension < Dialogue
+class DialogExtension < Dialog
 
   attr_reader :state
 
@@ -55,14 +55,14 @@ class DialogueExtension < Dialogue
     self.class.moves[@state][phrase] if self.class.moves[@state]
   end
 
-  # returns the possible states of this dialogue
+  # returns the possible states of this dialog
   def self.possible_states
     self.moves.keys
   end
 
   # metaprog
 
-  # hook words - these define when this dialogue is entered
+  # hook words - these define when this dialog is entered
   # adds a hooks method
   # TODO get hooks from yaml file
   def self.hook_words(*hooks)

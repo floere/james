@@ -8,11 +8,11 @@ They should always be of the form:
   # require 'james'
   require File.expand_path '../../lib/james', __FILE__
 
-  class ItunesDialogue
+  class ItunesDialog
 
-    include James::Dialogue
+    include James::Dialog
 
-    # You dialogue definitions go here.
+    # You dialog definitions go here.
 
   end
 
@@ -28,9 +28,9 @@ One example is the following simple one:
   # require 'james'
   require File.expand_path '../../lib/james', __FILE__
 
-  class ItunesDialogue
+  class ItunesDialog
 
-    include James::Dialogue
+    include James::Dialog
 
     def initialize
       # Usually though it's a good idea to set it up in the actions:

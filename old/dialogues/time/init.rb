@@ -1,1 +1,1 @@
-require 'time_dialogue'
+require 'time_dialog'

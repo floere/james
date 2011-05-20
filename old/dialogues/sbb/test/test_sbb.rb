@@ -2,15 +2,15 @@ require 'test/unit'
 require '../../../test/test_helper'
 require '../../../test/dummy_frontend'
 require 'sbb'
-require 'main_dialogue'
-require 'sbb_dialogue'
+require 'main_dialog'
+require 'sbb_dialog'
 
 class TestSbb < Test::Unit::TestCase
   
-  attr_reader :dialogue
+  attr_reader :dialog
   
   def setup
-    @dialogue = MainDialogue.new(DummyFrontend.new)
+    @dialog = MainDialog.new(DummyFrontend.new)
   end
   
   # not really an automated test - still need human visual processing
@@ -20,21 +20,21 @@ class TestSbb < Test::Unit::TestCase
   
   # TODO fix
   def test_sbb_next_train
-    dialogue.extend_with(SbbDialogue.new)
-    dialogue.hear('james')
+    dialog.extend_with(SbbDialog.new)
+    dialog.hear('james')
     
-    assert_equal(:awake, dialogue.state)
-    assert_equal(:from, dialogue.next_state('train'))
-    dialogue.hear('train')
-    assert_equal(:from, dialogue.state)
-    dialogue.hear('basel')
-    assert_equal(:to, dialogue.state)
-    assert_equal(:result, dialogue.next_state('next train'))
-    dialogue.hear('next train')
-    assert_equal(:result, dialogue.state)
-    dialogue.hear('go back')
-    assert_equal(:awake, dialogue.state)
-    dialogue.hear('sleep')
-    assert_equal(:sleeping, dialogue.state)
+    assert_equal(:awake, dialog.state)
+    assert_equal(:from, dialog.next_state('train'))
+    dialog.hear('train')
+    assert_equal(:from, dialog.state)
+    dialog.hear('basel')
+    assert_equal(:to, dialog.state)
+    assert_equal(:result, dialog.next_state('next train'))
+    dialog.hear('next train')
+    assert_equal(:result, dialog.state)
+    dialog.hear('go back')
+    assert_equal(:awake, dialog.state)
+    dialog.hear('sleep')
+    assert_equal(:sleeping, dialog.state)
   end
 end

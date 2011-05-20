@@ -1,6 +1,6 @@
 module James
 
-  # A state is defined in a dialogue.
+  # A state is defined in a dialog.
   #
   # It has a name with which it can be targeted.
   #

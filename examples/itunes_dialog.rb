@@ -4,7 +4,7 @@
 # require 'james'
 require File.expand_path '../../lib/james', __FILE__
 
-# iTunes dialogue by Florian Hanke.
+# iTunes dialog by Florian Hanke.
 #
 # This is a very simple James example.
 #
@@ -13,9 +13,9 @@ require File.expand_path '../../lib/james', __FILE__
 #
 # How could you enhance it to answer "What date is it?" ?
 #
-class ItunesDialogue
+class ItunesDialog
 
-  include James::Dialogue
+  include James::Dialog
 
   hear 'Open iTunes and play' => :itunes
   state :itunes do

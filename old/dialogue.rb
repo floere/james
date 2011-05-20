@@ -1,4 +1,4 @@
-class Dialogue
+class Dialog
   
   # choose one reply randomly from the given replies
   def random_reply(replies)

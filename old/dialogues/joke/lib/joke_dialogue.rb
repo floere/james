@@ -1,7 +1,7 @@
-require 'dialogue_extension'
+require 'dialog_extension'
 
 # little parody on 
-class JokeDialogue < DialogueExtension
+class JokeDialog < DialogExtension
   
   initial_state :joke
   hook_words 'tell me a funny thing', 'tell me a joke'

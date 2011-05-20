@@ -1,7 +1,7 @@
 require File.expand_path '../../lib/james', __FILE__
 
-class TimeDialogue
-  include James::Dialogue
+class TimeDialog
+  include James::Dialog
 
   hear 'What time is it?' => :time
   state :time do

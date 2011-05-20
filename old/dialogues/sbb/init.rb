@@ -1,1 +1,1 @@
-require 'sbb_dialogue'
+require 'sbb_dialog'

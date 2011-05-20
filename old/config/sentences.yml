@@ -2,7 +2,7 @@
 # commands are denoted with an exclamation mark
 # it is not possible to use multiple command words
 sleep!: sleep
-return from dialogue!: thank you
+return from dialog!: thank you
 # when james ... he says one of ...
 wakes up:
   - yes?

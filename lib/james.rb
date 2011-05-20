@@ -8,10 +8,10 @@ require File.expand_path '../james/state_internals', __FILE__
 require File.expand_path '../james/visitor', __FILE__
 require File.expand_path '../james/visitors', __FILE__
 
-require File.expand_path '../james/dialogue_api', __FILE__
-require File.expand_path '../james/dialogue_internals', __FILE__
+require File.expand_path '../james/dialog_api', __FILE__
+require File.expand_path '../james/dialog_internals', __FILE__
 
-require File.expand_path '../james/dialogues', __FILE__
+require File.expand_path '../james/dialogs', __FILE__
 
 require File.expand_path '../james/inputs/base', __FILE__
 require File.expand_path '../james/inputs/audio', __FILE__
@@ -20,7 +20,7 @@ require File.expand_path '../james/inputs/terminal', __FILE__
 require File.expand_path '../james/outputs/audio', __FILE__
 require File.expand_path '../james/outputs/terminal', __FILE__
 
-require File.expand_path '../james/builtin/core_dialogue', __FILE__
+require File.expand_path '../james/builtin/core_dialog', __FILE__
 
 require File.expand_path '../james/controller', __FILE__
 

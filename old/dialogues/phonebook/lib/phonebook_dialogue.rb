@@ -1,9 +1,9 @@
 # TODO remove
-require File.dirname(__FILE__) + '/../../../dialogue_extension'
-# require 'dialogue_extension'
+require File.dirname(__FILE__) + '/../../../dialog_extension'
+# require 'dialog_extension'
 require 'phonebook'
 
-class PhonebookDialogue < DialogueExtension
+class PhonebookDialog < DialogExtension
   
   # this class again tells me that I absolutely need a mapping!!!
   NUMBER_MAPPING = {

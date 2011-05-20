@@ -1,1 +1,1 @@
-require 'quote_dialogue'
+require 'quote_dialog'

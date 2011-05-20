@@ -6,7 +6,7 @@ require File.expand_path '../../../lib/james', __FILE__
 #
 require File.expand_path '../phonebook', __FILE__
 
-class PhonebookDialogue < DialogueExtension
+class PhonebookDialog < DialogExtension
 
   NUMBER_MAPPING = {
     'nil' => 0,

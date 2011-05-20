@@ -1,9 +1,9 @@
-require 'dialogue_extension'
+require 'dialog_extension'
 require 'sbb'
 
 # uses the sbb class to gather sbb information
-# can be used in the dialogue class as a delegate
-class SbbDialogue < DialogueExtension
+# can be used in the dialog class as a delegate
+class SbbDialog < DialogExtension
 
   HERE = 'bints'
   CITIES = ['berne','geneva','HB','basel','solothurn']

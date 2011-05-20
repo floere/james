@@ -1,7 +1,7 @@
 module James
 
   # The visitors class has a number of visitors, whose
-  # dialogues are visited in order of preference.
+  # dialogs are visited in order of preference.
   #
   # Why?
   # Discussions have multiple points where they can be.
@@ -39,13 +39,13 @@ module James
       end
     end
 
-    # Enter enters the first dialogue.
+    # Enter enters the first dialog.
     #
     def enter
       visitors.first.enter
     end
 
-    # Simply returns the sum of what phrases all dialogues expect.
+    # Simply returns the sum of what phrases all dialogs expect.
     #
     # Stops as soon as a visitor is not in a chainable state anymore.
     #

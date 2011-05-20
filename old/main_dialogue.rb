@@ -1,11 +1,11 @@
 require 'osx/cocoa'
-require 'dialogue'
+require 'dialog'
 
 require 'initializer'
 
 # has exactly two states, sleeping and awake
 # from the awake state, extensions can be plugged in to be delegated to them
-class MainDialogue < Dialogue
+class MainDialog < Dialog
 
   attr_accessor :state
 
@@ -30,7 +30,7 @@ class MainDialogue < Dialogue
       },
       :awake => {
         @sentences['sleep!'] => :sleeping,
-        @sentences['return from dialogue!'] => :awake
+        @sentences['return from dialog!'] => :awake
       }
     }
   end
@@ -137,7 +137,7 @@ class MainDialogue < Dialogue
     end
 
     # if the phrase cannot be handled, say so and return to awake
-    # this only occurs in badly formed dialogues
+    # this only occurs in badly formed dialogs
     say("I don't know what you mean.")
     exit_extension
   end
@@ -210,18 +210,18 @@ class MainDialogue < Dialogue
   private
 
   def configure_extensions
-    # which dialogue extension it is in right now
+    # which dialog extension it is in right now
     @extension = nil
     # actual packs
     @extensions = []
-    Dir['dialogues/**'].each do | dialogue_dir |
-     dialogue_dir.match('(.*)(\/)(.*)')
-     dialogue_file = $3 + '_dialogue'
-     extend_with dialogue_file.camelize.constantize.new
+    Dir['dialogs/**'].each do | dialog_dir |
+     dialog_dir.match('(.*)(\/)(.*)')
+     dialog_file = $3 + '_dialog'
+     extend_with dialog_file.camelize.constantize.new
     end
   end
 
-  # extend the main dialogue
+  # extend the main dialog
   # later added extension methods will not override old phrases
   def extend_with(extension)
     # reset extension

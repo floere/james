@@ -1,23 +1,23 @@
 require 'osx/cocoa'
-require 'main_dialogue'
+require 'main_dialog'
 
-# TODO move some stuff in the dialogue
+# TODO move some stuff in the dialog
 # TODO extract cocoa connection
 # TODO implement callback
 
 # debug
 USE_TEXTUAL_INTERFACE = false
 
-class DialogueFrontend
+class DialogFrontend
   
-  attr_reader :dialogue
+  attr_reader :dialog
 
   def initialize
     # load voices
     load_voices
     
-    # get a dialogue
-    @dialogue = MainDialogue.new(self)
+    # get a dialog
+    @dialog = MainDialog.new(self)
     
     # get and configure a recognizer interface
     start_recognizer
@@ -32,23 +32,23 @@ class DialogueFrontend
   # callback method from the speech interface
   def speechRecognizer_didRecognizeCommand( sender, command )
     command = command.to_s
-    # call the dialogue system
-    @dialogue.hear(command)
+    # call the dialog system
+    @dialog.hear(command)
     # set actual commands
-    self.commands = @dialogue.expects
+    self.commands = @dialog.expects
   end
   
-  # callback method from dialogue
+  # callback method from dialog
   def say(text)
     @synthesizer.startSpeakingString(text)
   end
   
-  # callback from dialogue
+  # callback from dialog
   def male
     self.voice = @male_voice
   end
   
-  # callback from dialogue
+  # callback from dialog
   def female
     self.voice = @female_voice
   end
@@ -72,7 +72,7 @@ class DialogueFrontend
     @recognizer.setBlocksOtherRecognizers(true)
     @recognizer.setListensInForegroundOnly(false)
     @recognizer.setDelegate(self)
-    self.commands = @dialogue.expects
+    self.commands = @dialog.expects
     @recognizer.startListening
   end
   
@@ -92,17 +92,17 @@ class DialogueFrontend
 
 end
 
-controller = DialogueFrontend.new
+controller = DialogFrontend.new
 
 # code to use a textual interface
 while USE_TEXTUAL_INTERFACE
   exit_words = ['quit','exit']
-  puts "'#{exit_words.join("' or '")}' to quit. Expects: #{controller.dialogue.expects.join(', ')}"
+  puts "'#{exit_words.join("' or '")}' to quit. Expects: #{controller.dialog.expects.join(', ')}"
   input = gets.chomp
   if exit_words.include?(input)
     break
   end
-  controller.dialogue.hear(input)
+  controller.dialog.hear(input)
 end
 
 OSX::NSApplication.sharedApplication.run

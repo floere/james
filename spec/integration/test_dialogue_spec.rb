@@ -2,10 +2,10 @@
 #
 require File.expand_path '../../../lib/james', __FILE__
 
-describe 'TestDialogue' do
+describe 'TestDialog' do
 
   context 'unit' do
-    let(:dialogue) do
+    let(:dialog) do
 
       Class.new do
         include James::Dialog
@@ -23,7 +23,7 @@ describe 'TestDialogue' do
 
     end
     let(:visitor) do
-      James::Visitor.new dialogue.state_for(:first)
+      James::Visitor.new dialog.state_for(:first)
     end
 
     describe "integration" do
@@ -40,8 +40,8 @@ describe 'TestDialogue' do
   end
   
   # context 'integration' do
-  #   let(:dialogue) do
-  #     dialogue = Class.new do
+  #   let(:dialog) do
+  #     dialog = Class.new do
   #       include James::Dialog
   # 
   #       hear ['test1', 'test2'] => :first
@@ -54,13 +54,13 @@ describe 'TestDialogue' do
   #     end.new
   #   end
   #   it 'works correctly' do
-  #     dialogue.state.name.should == :awake
-  #     dialogue.hear 'sleep'
-  #     dialogue.state.name.should == :sleeping
+  #     dialog.state.name.should == :awake
+  #     dialog.hear 'sleep'
+  #     dialog.state.name.should == :sleeping
   #   end
   #   it 'delegates correctly' do
-  #     dialogue.state.name.should == :awake
-  #     dialogue.hear 'test1'
+  #     dialog.state.name.should == :awake
+  #     dialog.hear 'test1'
   #   end
   # end
 

@@ -6,15 +6,15 @@ unless defined?(JAMES_ROOT)
   JAMES_ROOT = File.join(File.dirname(__FILE__), '.')
 end
 
-# add each dialogue lib subdir to the load path
-Dir['dialogues/**'].each do | dialogue_dir |
-  dialogue_init_path = dialogue_dir + '/init.rb'
-  dialogue_load_path = dialogue_dir + '/lib'
-  # add dialogue lib to load_path
+# add each dialog lib subdir to the load path
+Dir['dialogs/**'].each do | dialog_dir |
+  dialog_init_path = dialog_dir + '/init.rb'
+  dialog_load_path = dialog_dir + '/lib'
+  # add dialog lib to load_path
   # TODO unshift?
-  $: << dialogue_load_path
+  $: << dialog_load_path
   # eval init.rb
-  eval(IO.read(dialogue_init_path), binding, dialogue_init_path)
+  eval(IO.read(dialog_init_path), binding, dialog_init_path)
 end
 
 # borrowed from rails

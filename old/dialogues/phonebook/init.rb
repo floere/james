@@ -1,1 +1,1 @@
-require 'phonebook_dialogue'
+require 'phonebook_dialog'

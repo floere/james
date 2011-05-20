@@ -72,7 +72,7 @@ module James
     def expects
       current.phrases
     end
-    # Does the current state allow penetration into another dialogue?
+    # Does the current state allow penetration into another dialog?
     #
     def chainable?
       current.chainable?

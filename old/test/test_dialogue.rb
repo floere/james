@@ -1,20 +1,20 @@
 require 'test_helper'
-require '../main_dialogue'
+require '../main_dialog'
 require 'dummy_frontend'
 require 'yaml'
 
 # TODO require all files inside the extensions subdirectory
-Dir['dialogues/**/lib/**_dialogue.rb'].each do | dialogue_file |
-  dialogue_file.to_s.match(/(.*)(\.)/)
+Dir['dialogs/**/lib/**_dialog.rb'].each do | dialog_file |
+  dialog_file.to_s.match(/(.*)(\.)/)
   require $1
 end
 
-class TestDialogue < Test::Unit::TestCase
+class TestDialog < Test::Unit::TestCase
   
-  attr_reader :dialogue
+  attr_reader :dialog
   
   def setup
-    @dialogue = MainDialogue.new(DummyFrontend.new)
+    @dialog = MainDialog.new(DummyFrontend.new)
   end
   
   def test_dummy_frontend
@@ -26,33 +26,33 @@ class TestDialogue < Test::Unit::TestCase
   end
   
   def test_sleeping_awake
-    assert_equal(:sleeping, dialogue.state)
-    assert_equal(:awake, dialogue.next_state('james'))
-    dialogue.hear('james')
-    assert_equal(:awake, dialogue.state) 
+    assert_equal(:sleeping, dialog.state)
+    assert_equal(:awake, dialog.next_state('james'))
+    dialog.hear('james')
+    assert_equal(:awake, dialog.state) 
   end
   
   def test_awake_sleeping
-    dialogue.hear('james')
-    assert_equal(:awake, dialogue.state)
+    dialog.hear('james')
+    assert_equal(:awake, dialog.state)
 
-    assert_equal(:sleeping, dialogue.next_state('sleep'))
+    assert_equal(:sleeping, dialog.next_state('sleep'))
     
-    dialogue.hear('sleep')
-    assert_equal(:sleeping, dialogue.state)
-    dialogue.hear('james')
-    assert_equal(:awake, dialogue.state)
+    dialog.hear('sleep')
+    assert_equal(:sleeping, dialog.state)
+    dialog.hear('james')
+    assert_equal(:awake, dialog.state)
   end
   
   # the following test is dependent on the config file's content
   def test_expects_phrases
-    assert_equal(['jamie','james'], dialogue.expects)
-    dialogue.hear('james')
-    dialogue.hear('sleep')
-    assert_equal(['jamie','james'], dialogue.expects)
-    dialogue.hear('jamie')
-    dialogue.hear('sleep')
-    assert_equal(['jamie','james'], dialogue.expects)
+    assert_equal(['jamie','james'], dialog.expects)
+    dialog.hear('james')
+    dialog.hear('sleep')
+    assert_equal(['jamie','james'], dialog.expects)
+    dialog.hear('jamie')
+    dialog.hear('sleep')
+    assert_equal(['jamie','james'], dialog.expects)
   end
   
 end

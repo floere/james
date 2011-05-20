@@ -13,7 +13,7 @@ module James
       # Call this method if you heard something in the subclass.
       #
       def heard command
-        # Call dialogue.
+        # Call dialog.
         #
         controller.hear command
       end

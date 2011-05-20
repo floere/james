@@ -1,6 +1,6 @@
-require 'dialogue_extension'
+require 'dialog_extension'
 
-class TimeDialogue < DialogueExtension
+class TimeDialog < DialogExtension
   
   initial_state :time
   hook_words "what's the time?"

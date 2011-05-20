@@ -1,6 +1,6 @@
 h1. James
 
-A voice controlled electronic butler
+A voice controlled electronic butler.
 
 h2. Requirements
 
@@ -13,7 +13,7 @@ h2. Installation
 
 h2. Basics
 
-James consists of dialog(ue)s that are modeled as state machines. You navigate through these dialog(ue)s by talking to James.
+James consists of dialogs that are modeled as state machines. You navigate through these dialogs by talking to James.
 
 He will then take action (looking up timetables, checking the weather etc.) and inform you. Or maybe just tell a joke.
 
@@ -21,11 +21,11 @@ h2. Examples
 
 All examples can be found in "/examples":http://github.com/floere/james/tree/master/examples.
 
-Create a file called @time_dialogue.rb@ (or @time_dialog.rb@, James doesn't mind Americans ;) ):
+Create a file called @time_dialog.rb@:
 
-<pre><code>class TimeDialogue
+<pre><code>class TimeDialog
 
-  include James::Dialogue
+  include James::Dialog
 
   hear 'what time is it?' => :time
   state :time do
@@ -40,7 +40,7 @@ This says that if James hears (@hear@) @"What time is it?"@ that it should enter
 
 If he then hears "What time is it?" again, it will return to state @:time@.
 
-When he enters (@into@), James executes the block in the dialogue's context. Whatever is returned from the block, James will say out lout. Everything else he will just think. (So it's like Sinatra in rendering, just that James renders audio)
+When he enters (@into@), James executes the block in the dialog's context. Whatever is returned from the block, James will say out lout. Everything else he will just think. (So it's like Sinatra in rendering, just that James renders audio)
 
 Here, he will just say the current time when entering the @:time@ state.
 
@@ -51,33 +51,33 @@ Running it is easy. Either use
 <pre><code>require 'rubygems'
 require 'james'
 
-# Your dialogue goes here.
+# Your dialog goes here.
 
 James.listen</code></pre>
 
 in your script, and call it by using
 
-<pre><code>ruby time_dialogue.rb</code></pre>
+<pre><code>ruby time_dialog.rb</code></pre>
 
 Or else, in the terminal, just call
 
 <pre><code>$ james</code></pre>
 
-and it will include all dialogues (files called @_dialog{ue,}.rb@) in this directory and subdirectories. E.g. @joke_dialog.rb@, @newsfeed_dialogue.rb@, or @social_media/tweets_dialog.rb@.
+and it will include all dialogs (files called @_dialog{ue,}.rb@, the @ue@ is for the brits and aussies :) ) in this directory and subdirectories. E.g. @joke_dialog.rb@, @newsfeed_dialog.rb@, or @social_media/tweets_dialog.rb@.
 
-You can select dialogues using their first file name part
+You can select dialogs using their first file name part
 
 <pre><code>$ james time joke twitter</code></pre>
 
-and it will include the time dialogue, the joke dialogue, and the twitter dialogue.
+and it will include the time dialog, the joke dialog, and the twitter dialog.
 
 Note: The @james@ executable looks for files called  and includes them.
 
 h3. Short Version
 
-There is a short, anonymous dialogue version, using @James.dialogue@ aka @James.dialog@.
+There is a short, anonymous dialog version, using @James.dialog@.
 
-<pre><code>James.dialogue do
+<pre><code>James.dialog do
 
   hear 'what time is it?' => :time
   state :time do
@@ -93,9 +93,9 @@ Or there is an extended version, using initialize to set up some important stuff
 
 <pre><code>require 'james'
 
-class TwitterDialogue
+class TwitterDialog
 
-  include James::Dialogue
+  include James::Dialog
 
   def initialize
     @client = Twitter.new 'user', 'password'
@@ -123,7 +123,7 @@ end</code></pre>
 h2. Contributions
 
 Contributions are in the "/examples":http://github.com/floere/james/tree/master/examples folder.
-Sending dialogue gists is appreciated. Thanks!
+Sending dialog gists is appreciated. Thanks!
 
 h2. Running the specs
 
@@ -131,15 +131,15 @@ h2. Running the specs
 
 h2. Roadmap
 
-* Make James (e.g. voice, core dialogue) configurable.
-* Add more useful dialogues made by YOU :)
+* Make James (e.g. voice, core dialog) configurable.
+* Add more useful dialogs made by YOU :)
 
 h2. Ideas
 
 # Put it on a Mac Mini, attach a few microphones, distribute in the house.
-# Create a few useful dialogues, like a train timetable, or similar.
+# Create a few useful dialogs, like a train timetable, or similar.
 # Sit on your sofa, and talk to James out loud.
-# Send us your dialogues :)
+# Send us your dialogs :)
 
 h2. MIT License
 

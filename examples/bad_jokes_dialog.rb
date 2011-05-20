@@ -4,7 +4,7 @@
 # require 'james'
 require File.expand_path '../../lib/james', __FILE__
 
-# Time dialogue by Florian Hanke.
+# Time dialog by Florian Hanke.
 #
 # This is a very simple James example.
 #
@@ -13,9 +13,9 @@ require File.expand_path '../../lib/james', __FILE__
 #
 # Improve the jokes ;)
 #
-class JokeDialogue
+class JokeDialog
 
-  include James::Dialogue
+  include James::Dialog
 
   hear 'Tell me a joke' => :joke
 

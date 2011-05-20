@@ -1,1 +1,1 @@
-require 'joke_dialogue'
+require 'joke_dialog'

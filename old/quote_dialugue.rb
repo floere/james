@@ -1,7 +1,7 @@
 require 'quote_of_the_day'
 
-class QuoteDialogue
-  include James::Dialogue
+class QuoteDialog
+  include James::Dialog
 
   entry 'quote of the day', 'quote' => :quote
   state :quote, ['random', 'next', 'last', 'repeat'] => :quote

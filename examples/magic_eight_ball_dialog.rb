@@ -4,16 +4,16 @@
 # require 'james'
 require File.expand_path '../../lib/james', __FILE__
 
-# Time dialogue by Florian Hanke.
+# Time dialog by Florian Hanke.
 #
 # This is a very simple James example.
 #
 # It has only one state, :shake, and a single
 # entry/hook phrase, "Shake the eight ball"
 #
-class MagicEightBallDialogue
+class MagicEightBallDialog
 
-  include James::Dialogue
+  include James::Dialog
 
   attr_reader :states
 
