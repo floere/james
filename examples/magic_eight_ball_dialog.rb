@@ -53,5 +53,3 @@ James.use_dialog do
   end
 
 end
-
-James.listen

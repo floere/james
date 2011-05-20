@@ -1,3 +1,10 @@
+h2. Version 0.1.0
+
+* hanke: API breakage, @James.dialog@ -> @James.use_dialog@.
+* hanke: Command line @james@ now takes file names (or patterns, like @james time_dialog.rb@ or @james {time,twitter}*.rb@)
+* hanke: @James.listen@ can only be called once. So if you use @ruby@ to run a dialog, it needs to be called once at the end of the script.
+* hanke: Added @James.use@. It takes any number of @James::Dialog@ instances to use when listening.
+
 h2. Version 0.0.12
 
 * hanke: @hear 'Stay in same state' => ->(){ "This block will now be instance eval'd in the context of the Dialog" }@

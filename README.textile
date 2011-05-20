@@ -23,11 +23,10 @@ All examples can be found in "/examples":http://github.com/floere/james/tree/mas
 
 Create a file called @time_dialog.rb@:
 
-<pre><code>class TimeDialog
-
-  include James::Dialog
+<pre><code>James.use_dialog do
 
   hear 'what time is it?' => :time
+
   state :time do
     hear ['What time is it?', 'And now?'] => :time
     into { time = Time.now; "It is currently #{time.hour} #{time.min}." }
@@ -53,6 +52,8 @@ require 'james'
 
 # Your dialog goes here.
 
+# This is needed to start James.
+#
 James.listen</code></pre>
 
 in your script, and call it by using
@@ -65,21 +66,26 @@ Or else, in the terminal, just call
 
 and it will include all dialogs (files called @_dialog{ue,}.rb@, the @ue@ is for the brits and aussies :) ) in this directory and subdirectories. E.g. @joke_dialog.rb@, @newsfeed_dialog.rb@, or @social_media/tweets_dialog.rb@.
 
-You can select dialogs using their first file name part
+You can select dialogs using their file names
 
-<pre><code>$ james time joke twitter</code></pre>
+<pre><code>$ james time_dialog.rb twitter_dialog.rb</code></pre>
 
-and it will include the time dialog, the joke dialog, and the twitter dialog.
+and it will include the time dialog and the twitter dialog.
 
-Note: The @james@ executable looks for files called  and includes them.
+Or a bit more exciting
+
+<pre><code>$ james {time,twitter}*.rb</code></pre>
+
+to do the same as above.
 
 h3. Short Version
 
-There is a short, anonymous dialog version, using @James.dialog@.
+There is a short, anonymous dialog version, using @James.use_dialog@.
 
-<pre><code>James.dialog do
+<pre><code>James.use_dialog do
 
   hear 'what time is it?' => :time
+
   state :time do
     hear ['What time is it?', 'And now?'] => :time
     into { time = Time.now; "It is currently #{time.hour} #{time.min}." }
@@ -89,7 +95,7 @@ end</code></pre>
 
 h3. Extended Version
 
-Or there is an extended version, using initialize to set up some important stuff that needs other stuff for doing stuff, you know?
+Or there is an extended version, using initialize with parameters to set up some important stuff that needs other stuff for doing stuff, you know?
 
 <pre><code>require 'james'
 
@@ -97,11 +103,12 @@ class TwitterDialog
 
   include James::Dialog
 
-  def initialize
-    @client = Twitter.new 'user', 'password'
+  def initialize user, password
+    @client = Twitter.new user, password
   end
 
   hear 'What are the birds tweeting?' => :newsfeed
+
   state :newsfeed do
     hear 'Who mentions me?' => :mentions
     into do
@@ -118,7 +125,11 @@ class TwitterDialog
     end
   end
 
-end</code></pre>
+end
+
+James.use TwitterDialog.new('user', 'password')
+
+James.listen</code></pre>
 
 h2. Contributions
 
@@ -127,7 +138,7 @@ Sending dialog gists is appreciated. Thanks!
 
 h2. Running the specs
 
-@rspec spec@
+Currently need to be run separately.
 
 h2. Roadmap
 

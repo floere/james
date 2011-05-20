@@ -37,5 +37,3 @@ class TwitterDialog
 end
 
 James.use TwitterDialog.new('hanke')
-
-James.listen

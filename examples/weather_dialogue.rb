@@ -34,5 +34,3 @@ class WeatherDialog
 end
 
 James.use WeatherDialog.new('Melbourne')
-
-James.listen

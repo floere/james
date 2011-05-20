@@ -2,60 +2,72 @@ This is the directory for contributed examples.
 
 They should always be of the form:
 
-<pre><code>  # If using the gem, replace with:
-  #
-  # require 'rubygems'
-  # require 'james'
-  require File.expand_path '../../lib/james', __FILE__
+<pre><code># If using the gem, replace with:
+#
+# require 'rubygems'
+# require 'james'
+require File.expand_path '../../lib/james', __FILE__
 
-  class ItunesDialog
+James.use_dialog do
 
-    include James::Dialog
+  # You dialog definitions go here.
 
-    # You dialog definitions go here.
+end
 
+# Or with initializer.
+#
+class CoffeeDialog
+
+  include James::Dialog
+
+  def initialize coffee_type
+    @coffee_type = coffee_type
   end
 
-  # This line is for running it standalone.
-  #
-  James.listen</code></pre>
+  # Your dialog definitions go here.
+
+end
+
+James.use CoffeeDialog.new('bolivian')</code></pre>
 
 One example is the following simple one:
 
-<pre><code>  # If using the gem, replace with:
-  #
-  # require 'rubygems'
-  # require 'james'
-  require File.expand_path '../../lib/james', __FILE__
+<pre><code># If using the gem, replace with:
+#
+# require 'rubygems'
+# require 'james'
+require File.expand_path '../../lib/james', __FILE__
 
-  class ItunesDialog
+class ItunesDialog
 
-    include James::Dialog
+  include James::Dialog
 
-    def initialize
-      # Usually though it's a good idea to set it up in the actions:
-      # @setup_thing ||= Thing.new
-      # @setup_thing.do_something
-      #
-      @setup_thing = Thing.new
+  def initialize
+    # Usually though it's a good idea to set it up lazily in the actions:
+    # @setup_thing ||= Thing.new
+    # @setup_thing.do_something
+    #
+    @setup_thing = Thing.new
+  end
+
+  hear 'My useful initial phrase' => :my_initial_state
+
+  state :my_initial_state do
+
+    hear 'something'                   => :next_state
+    hear 'something and stay in state' => ->(){ "I am saying this but staying in this state" }
+    hear 'something and stay in state, silently'
+
+    into do
+      "Say something on entering"
     end
 
-    hear 'My useful initial phrase' => :my_initial_state
-    state :my_initial_state do
-      hear 'something'                   => :next_state
-      hear 'something and stay in state' => ->(){ "I am saying this but staying in this state" }
-      into do
-        "Say something on entering"
-      end
-      exit do
-        "Say something on exiting"
-      end
+    exit do
+      "Say something on exiting"
     end
 
   end
 
-  # This line is for running it standalone.
-  #
-  James.listen</code></pre>
+end</code></pre>
 
 Please see the many examples in this folder.
