@@ -16,27 +16,26 @@ class TwitterDialog
 
   include James::Dialog
 
-  def self.configure from
+  def initialize from
+    @from = from
+  end
 
-    hear 'Give me the latest tweets please.' => :latest
-    state :latest do
-      hear 'Again please' => :latest
-      into do
-        say = []
-        @tweets ||= Twitter::Search.new
-        @tweets.from(from).result_type('mixed').no_retweets.per_page(3).each do |r|
-          say << r.text.gsub(/\@\w+\s/, '')
-        end
-        say.join ' followed by '
+  hear 'Give me the latest tweets please.' => :latest
+
+  state :latest do
+    hear 'Again please' => :latest
+    into do
+      say = []
+      @tweets ||= Twitter::Search.new
+      @tweets.from(@from).result_type('mixed').no_retweets.per_page(3).each do |r|
+        say << r.text.gsub(/\@\w+\s/, '')
       end
+      say.join ' followed by '
     end
-
   end
 
 end
 
-# This could be somewhere else of course.
-#
-TwitterDialog.configure 'hanke'
+James.use TwitterDialog.new('hanke')
 
 James.listen

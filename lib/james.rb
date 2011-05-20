@@ -22,18 +22,31 @@ require File.expand_path '../james/outputs/terminal', __FILE__
 
 require File.expand_path '../james/builtin/core_dialog', __FILE__
 
+require File.expand_path '../james/framework', __FILE__
 require File.expand_path '../james/controller', __FILE__
 
 module James
+
+  # Use the given dialogs.
+  #
+  # If called twice or more, will just add more dialogs.
+  #
+  def self.use *dialogs
+    dialogs.each { |dialog| controller.add_dialog dialog }
+  end
 
   # Start a new controller and listen.
   #
   # Will not listen again if already listening.
   #
   def self.listen
-    return if @controller && @controller.listening?
+    controller.listen unless controller.listening?
+  end
+
+  # Controller instance.
+  #
+  def self.controller
     @controller ||= Controller.new
-    @controller.listen
   end
 
 end

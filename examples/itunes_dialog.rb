@@ -13,11 +13,10 @@ require File.expand_path '../../lib/james', __FILE__
 #
 # How could you enhance it to answer "What date is it?" ?
 #
-class ItunesDialog
-
-  include James::Dialog
+James.use_dialog do
 
   hear 'Open iTunes and play' => :itunes
+
   state :itunes do
     hear 'Next track' => ->() do
       `osascript -e 'tell application "iTunes"' -e "next track" -e "end tell"`

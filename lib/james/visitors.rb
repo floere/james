@@ -22,6 +22,10 @@ module James
       @visitors = visitors
     end
 
+    def add_dialog dialog
+
+    end
+
     # Hear tries all visitors in order
     # until one hears a phrase he knows.
     #

@@ -1,5 +1,3 @@
-framework 'AppKit'
-
 module James
 
   class Controller
@@ -9,10 +7,12 @@ module James
     # This puts together the core dialog and the user
     # ones that are hooked into it.
     #
+    # TODO Rewrite this. Design needs some refactoring.
+    #
     def initialize
-      user_visitor   = initialize_dialogs.visitor
+      @user_dialogs  = Dialogs.new
       system_visitor = Visitor.new CoreDialog.new.state_for(:awake)
-      @visitor       = Visitors.new system_visitor, user_visitor
+      @visitor       = Visitors.new system_visitor, @user_dialogs.visitor
     end
 
     def applicationDidFinishLaunching notification
@@ -30,14 +30,12 @@ module James
       # TODO
     end
 
-    # Initialize and "parse" the
-    # dialogs.
+    # Add a dialog to the current system.
     #
-    def initialize_dialogs
-      dialogs = Dialogs.new
-      dialogs.resolve
-      dialogs
+    def add_dialog dialog
+      @user_dialogs << dialog
     end
+
     # Start recognizing words.
     #
     def start_input
@@ -56,12 +54,12 @@ module James
       @output.say text
     end
     def hear text
-      @visitor.hear text do |response|
+      visitor.hear text do |response|
         say response
       end
     end
     def expects
-      @visitor.expects
+      visitor.expects
     end
 
     def listen
@@ -87,12 +85,14 @@ module James
       # window.display
       # window.orderFrontRegardless
 
+      @listening = true
+
       app.run
     end
-    # Simply put, if there is a controller, it is listening.
+    # If listen has been called, it is listening.
     #
     def listening?
-      true
+      !!@listening
     end
 
   end

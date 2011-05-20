@@ -13,13 +13,12 @@ require File.expand_path '../../lib/james', __FILE__
 #
 # How could you enhance it to answer "What date is it?" ?
 #
-class TimeDialog
-
-  include James::Dialog
+James.use_dialog do
 
   hear 'What time is it?' => :time
+
   state :time do
-    hear ['What time is it?', 'What time is it now?'] => :time
+    hear ['What time is it?', 'What time is it now?']
     into do
       time = Time.now
       "It is currently #{time.hour} #{time.min}."

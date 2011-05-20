@@ -11,9 +11,7 @@ require File.expand_path '../../lib/james', __FILE__
 # It has only one state, :shake, and a single
 # entry/hook phrase, "Shake the eight ball"
 #
-class MagicEightBallDialog
-
-  include James::Dialog
+James.use_dialog do
 
   attr_reader :states
 
