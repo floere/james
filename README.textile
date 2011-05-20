@@ -60,6 +60,8 @@ in your script, and call it by using
 
 <pre><code>ruby time_dialog.rb</code></pre>
 
+Or, without the @James.listen@, use @ruby -rexamples/your_dialog.rb -e "James.listen"@ in the command line.
+
 Or else, in the terminal, just call
 
 <pre><code>$ james</code></pre>
@@ -72,7 +74,7 @@ You can select dialogs using their file names
 
 and it will include the time dialog and the twitter dialog.
 
-Or a bit more exciting
+Or a bit snappier
 
 <pre><code>$ james {time,twitter}*.rb</code></pre>
 
