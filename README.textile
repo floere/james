@@ -138,6 +138,8 @@ h2. Contributions
 Contributions are in the "/examples":http://github.com/floere/james/tree/master/examples folder.
 Sending dialog gists is appreciated. Thanks!
 
+After forking, in the james directory, run @./bin/james examples/time_dialog.rb@ to have your first successful experience! :)
+
 h2. Running the specs
 
 Currently need to be run separately.
