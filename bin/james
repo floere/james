@@ -1,9 +1,11 @@
 #!/usr/bin/env ruby
 #
 
-# james joke phonebook quote # Uses just the described ones.
+# james joke_dialog.rb phonebook_dialog.rb quote_dialog.rb # Uses just the described ones.
 # OR
-# james # Uses all it can find.
+# james j*.rb # Uses all the dialogs matching the pattern.
+# OR
+# james # Uses all dialogs it can find in this dir and subdirs.
 #
 
 begin

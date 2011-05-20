@@ -4,24 +4,23 @@ module James
 
   class CLI
 
-    def execute *given_dialogues
-      dialogues = find_dialogues
-      dialogues.select! { |dialogue| given_dialogues.any? { |given| dialogue =~ %r{#{given}_dialog(ue)?.rb$} } } unless given_dialogues.empty?
+    def execute *patterns
+      dialogs = find_dialogs_for patterns
 
-      puts "James: I haven't found anything to talk about (No *_dialog{ue,}.rb files found). Exiting." or exit!(1) if dialogues.empty?
+      puts "James: I haven't found anything to talk about (No files found). Exiting." or exit!(1) if dialogs.empty?
+      puts "James: Using dialogs in #{dialogs.join(', ')} for our conversation, Sir."
 
-      puts "James: Using #{dialogues.join(', ')} for our conversation, Sir."
-
-      require_all dialogues
+      load_all dialogs
 
       James.listen
     end
-    def find_dialogues
-      Dir["**/*_dialog{,ue}.rb"]
+    def find_dialogs_for patterns
+      patterns = ["**/*_dialog{,ue}.rb"] if patterns.empty?
+      Dir[*patterns]
     end
-    def require_all dialogues
-      dialogues.each do |dialogue|
-        require File.expand_path dialogue, Dir.pwd
+    def load_all dialogs
+      dialogs.each do |dialog|
+        load File.expand_path dialog, Dir.pwd
       end
     end
 
