@@ -15,7 +15,7 @@ module James
           show_possibilities possibilities
           command = get_command
           puts "I heard '#{command}'."
-          command = possibilities[command.to_i-1] if Integer(command)
+          command = possibilities[command.to_i-1] unless command.to_i.zero?
           heard command if possibilities.include? command
         end
       end
