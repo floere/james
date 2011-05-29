@@ -4,6 +4,8 @@ module James
 
     attr_reader :visitor, :listening
 
+    # Singleton reader.
+    #
     def self.instance
       @controller ||= new
     end
@@ -12,11 +14,17 @@ module James
     # ones that are hooked into it.
     #
     # TODO Rewrite this. Design needs some refactoring.
+    #      Should the user visitor be created dynamically? (Probably yes.)
     #
     def initialize
-      @user_dialogs  = Dialogs.new
-      system_visitor = Visitor.new CoreDialog.new.state_for(:awake)
-      @visitor       = Visitors.new system_visitor, @user_dialogs.visitor
+      @user_dialogs = Dialogs.new
+      @visitor      = Visitors.new system_visitor, user_visitor
+    end
+    def system_visitor
+      Visitor.new CoreDialog.new.state_for(:awake)
+    end
+    def user_visitor
+      @user_dialogs.visitor
     end
 
     # MacRuby callback functions.
