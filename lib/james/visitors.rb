@@ -22,10 +22,6 @@ module James
       @visitors = visitors
     end
 
-    def add_dialog dialog
-
-    end
-
     # Hear tries all visitors in order
     # until one hears a phrase he knows.
     #
@@ -38,18 +34,18 @@ module James
         visitor.hear phrase, &block and break
       end
 
-      while visitor = enumerator.shift
+      enumerator.each do |visitor|
         visitor.reset
       end
     end
 
-    # Enter enters the first dialog.
+    # Enter enters the first visitor.
     #
     def enter
       visitors.first.enter
     end
 
-    # Simply returns the sum of what phrases all dialogs expect.
+    # Simply returns the sum of what phrases all dialogs do expect, front-to-back.
     #
     # Stops as soon as a visitor is not in a chainable state anymore.
     #
