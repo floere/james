@@ -35,12 +35,12 @@ module James
     dialogs.each { |dialog| controller.add_dialog dialog }
   end
 
-  # Start a new controller and listen.
+  # Start listening.
   #
   # Will not listen again if already listening.
   #
-  def self.listen
-    controller.listen unless controller.listening?
+  def self.listen options
+    controller.listen options
   end
 
   # Controller instance.

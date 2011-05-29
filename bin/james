@@ -7,6 +7,11 @@
 # OR
 # james # Uses all dialogs it can find in this dir and subdirs.
 #
+# Options:
+#  * -s  # Silent input and output (same as "-si -so").
+#  * -si # Silent input.
+#  * -so # Silent output.
+#
 
 begin
   require 'james/cli'

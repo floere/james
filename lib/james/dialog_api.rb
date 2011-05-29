@@ -2,7 +2,7 @@ module James
 
   # A dialog can be instantiated in two ways:
   #
-  # The simple way, will directly add itself to James.
+  # The simple way will directly add itself to James.
   #
   # James.use_dialog(optional_args_for_initialize) do
   #   # Your dialog.
@@ -10,12 +10,16 @@ module James
   # end
   #
   # class MyDialog
+  #
   #   include James::Dialog
   #
-  #   # Your dialog.
+  #   # Your dialog definition.
   #   #
+  #
   # end
   #
+  # # Tell James to use the dialog.
+  # #
   # James.use MyDialog.new
   #
   module Dialog; end

@@ -2,7 +2,7 @@ module James
 
   class Controller
 
-    attr_reader :visitor
+    attr_reader :visitor, :listening
 
     # This puts together the core dialog and the user
     # ones that are hooked into it.
@@ -15,19 +15,14 @@ module James
       @visitor       = Visitors.new system_visitor, @user_dialogs.visitor
     end
 
+    # MacRuby callback functions.
+    #
     def applicationDidFinishLaunching notification
-      load_voices
       start_output
       start_input
     end
     def windowWillClose notification
       exit
-    end
-
-    # Load voices from yaml.
-    #
-    def load_voices
-      # TODO
     end
 
     # Add a dialog to the current system.
@@ -39,13 +34,13 @@ module James
     # Start recognizing words.
     #
     def start_input
-      @input = Inputs::Audio.new self
+      @input = @input_class.new self
       @input.listen
     end
     # Start speaking.
     #
     def start_output
-      @output = Outputs::Audio.new
+      @output = @output_class.new @output_options
     end
 
     # Callback method from dialog.
@@ -62,37 +57,27 @@ module James
       visitor.expects
     end
 
-    def listen
+    # Start listening using the provided options.
+    #
+    # Options:
+    #  * input  # Inputs::Terminal or Inputs::Audio (default).
+    #  * output # Outputs::Terminal or Outputs::Audio (default).
+    #
+    def listen options = {}
+      return if listening
+
+      @input_class    = options[:input]  || Inputs::Audio
+      @output_class   = options[:output] || Outputs::Audio
+
+      @output_options ||= {}
+      @output_options[:voice] = options[:voice] || 'com.apple.speech.synthesis.voice.Alex'
+
       app = NSApplication.sharedApplication
       app.delegate = self
-
-      # window = NSWindow.alloc.initWithContentRect([100, 300, 300, 100],
-      #     styleMask:NSTitledWindowMask|NSClosableWindowMask|NSMiniaturizableWindowMask,
-      #     backing:NSBackingStoreBuffered,
-      #     defer:false)
-      # window.title      = 'James Debug/Info'
-      # window.level      = 3
-      # window.delegate   = app.delegate
-
-      # @button = NSButton.alloc.initWithFrame([10, 10, 400, 10])
-      # @button.bezelStyle = 4
-      # @button.title      = ''
-      # @button.target     = app.delegate
-      # @button.action     = 'say_hello:'
-      #
-      # window.contentView.addSubview(@button)
-
-      # window.display
-      # window.orderFrontRegardless
 
       @listening = true
 
       app.run
-    end
-    # If listen has been called, it is listening.
-    #
-    def listening?
-      !!@listening
     end
 
   end

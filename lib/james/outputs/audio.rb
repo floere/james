@@ -4,11 +4,17 @@ module James
 
     class Audio
 
-
-      def initialize voice = nil
-        @output = NSSpeechSynthesizer.alloc.initWithVoice voice || 'com.apple.speech.synthesis.voice.Alex'
+      # Create a new audio output.
+      #
+      # Options:
+      #  * voice # Default is 'com.apple.speech.synthesis.voice.Alex'.
+      #
+      def initialize options = {}
+        @output = NSSpeechSynthesizer.alloc.initWithVoice options[:voice] || 'com.apple.speech.synthesis.voice.Alex'
       end
 
+      # Say the given text out loud.
+      #
       def say text
         @output.startSpeakingString text
       end

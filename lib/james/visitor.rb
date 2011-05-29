@@ -6,10 +6,6 @@ module James
   # too much time passes without input.
   #
   # Note: A visitor should generally be very stupid.
-  # Note 2: We could call this Hearing, or Ear ;)
-  #
-  # TODO Add a timer which resets the state to the
-  #      initial state.
   #
   class Visitor
 
@@ -18,11 +14,11 @@ module James
 
     # Pass in an initial state to start from.
     #
-    def initialize initial, timer = nil
+    def initialize initial
       @current = initial
 
       @initial = initial
-      # @timer   = timer || Timer.new
+      # @timer   = Timer.new self
     end
 
     # Resets the current state back to the initial.

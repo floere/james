@@ -33,7 +33,10 @@ module James
       end
       def recognize_new_commands
         possibilities = controller.expects
-        puts "Possibilities:\n  #{possibilities.join("\n  ")}"
+        puts "Possibilities:\n"
+        possibilities.each_with_index do |possibility, index|
+          puts "#{index + 1})  #{possibility}"
+        end
         @recognizer.setCommands possibilities
       end
 

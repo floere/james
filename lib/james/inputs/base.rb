@@ -13,9 +13,16 @@ module James
       # Call this method if you heard something in the subclass.
       #
       def heard command
-        # Call dialog.
-        #
         controller.hear command
+      end
+
+      # Shows possible commands in the terminal.
+      #
+      def show_possibilities possibilities
+        puts "Possibilities:\n"
+        possibilities.each_with_index do |possibility, index|
+          puts "#{index + 1})  #{possibility}"
+        end
       end
 
     end
