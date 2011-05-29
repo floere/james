@@ -9,10 +9,6 @@ require File.expand_path '../../../../lib/james/dialogs', __FILE__
 
 describe James::Dialog do
   
-  it 'can haz merkin spellink' do
-    James::Dialog.should == James::Dialog
-  end
-  
   context 'units' do
     let(:dialog) do
       James.use_dialog do
