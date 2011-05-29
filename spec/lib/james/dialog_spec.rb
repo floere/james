@@ -85,15 +85,6 @@ describe James::Dialog do
         end
       end.to_not raise_error
     end
-    it 'can haz merkin spellink' do
-      expect do
-        James.dialog do
-          
-          hear 'something' => :some_state
-          
-        end
-      end.to_not raise_error
-    end
   end
   
 end
