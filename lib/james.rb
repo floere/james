@@ -44,7 +44,7 @@ module James
   # Controller instance.
   #
   def self.controller
-    @controller ||= Controller.new
+    Controller.instance
   end
 
 end

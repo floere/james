@@ -4,6 +4,10 @@ module James
 
     attr_reader :visitor, :listening
 
+    def self.instance
+      @controller ||= new
+    end
+
     # This puts together the core dialog and the user
     # ones that are hooked into it.
     #
