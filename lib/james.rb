@@ -1,7 +1,5 @@
 module James; end
 
-# require File.expand_path '../james/timer', __FILE__
-
 require File.expand_path '../james/state_api', __FILE__
 require File.expand_path '../james/state_internals', __FILE__
 

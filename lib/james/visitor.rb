@@ -18,13 +18,11 @@ module James
       @current = initial
 
       @initial = initial
-      # @timer   = Timer.new self
     end
 
     # Resets the current state back to the initial.
     #
     def reset
-      # timer.stop
       self.current = initial
     end
 
@@ -55,7 +53,6 @@ module James
     end
     def hear phrase, &block
       return unless hears? phrase
-      # timer.restart
       exit_text = exit &block
       transition phrase
       check &block
