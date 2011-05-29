@@ -1,3 +1,7 @@
+h2. Version 0.1.1
+
+* hanke: @james@ command line includes options @-s@ (silent input/output), @-si@ (silent input) and @-so@ (silent output). @-s@ is equal to @-si -so@.
+
 h2. Version 0.1.0
 
 * hanke: API breakage, @James.dialog@ -> @James.use_dialog@.
