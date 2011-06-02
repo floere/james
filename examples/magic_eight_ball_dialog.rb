@@ -43,10 +43,10 @@ James.use_dialog do
     ]
   end
 
-  hear 'Shake the eight ball' => :joke
+  hear 'Shake the eight ball' => :shake
 
-  state :joke do
-    hear ['Shake the eight ball', 'Again'] => :joke
+  state :shake do
+    hear ['Shake the eight ball', 'Again']
     into do
       states[rand(states.size)]
     end
