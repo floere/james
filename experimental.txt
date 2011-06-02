@@ -1,0 +1,5 @@
+Make it possible to have complex dialogs.
+
+core_dialog << weather_dialog # Attach to all chainable states of the core dialog.
+core_dialog << fun_dialogs    # Attach all dialogs to all chainable states of the core dialog.
+core_dialog.state_for(:awake) << stocks_dialog # Attach to one specific state.
