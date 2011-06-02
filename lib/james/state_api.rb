@@ -48,14 +48,18 @@ module James
 
     # Execute this block when entering this state.
     #
-    def into &block
-      @into_block = block
+    def into text = nil, &block
+      @into_block = block ||
+                    text && lambda { text } ||
+                    raise(ArgumentError.new("Neither block nor text given to #{self.class}##{__method__} call of #{caller}."))
     end
 
     # Execute this block when exiting this state.
     #
-    def exit &block
-      @exit_block = block
+    def exit text = nil, &block
+      @exit_block = block ||
+                    text && lambda { text } ||
+                    raise(ArgumentError.new("Neither block nor text given to #{self.class}##{__method__} call of #{caller}."))
     end
 
     # By default, a state is not chainable.

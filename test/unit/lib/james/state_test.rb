@@ -3,6 +3,9 @@
 require File.expand_path '../../../../../lib/james/state_api', __FILE__
 require File.expand_path '../../../../../lib/james/state_internals', __FILE__
 
+require 'minitest/autorun'
+require 'minitest/unit'
+
 describe James::State do
 
   before do
@@ -50,10 +53,12 @@ describe James::State do
     end
     describe 'expand' do
       it '' do
-        assert_equal state.expand([:a, :b] => 1), :a => 1, :b => 1
+        expected = { :a => 1, :b => 1 }
+        assert_equal expected, state.expand([:a, :b] => 1)
       end
       it '' do
-        assert_equal state.expand(:a => 1), :a => 1
+        expected = { :a => 1 }
+        assert_equal expected, state.expand(:a => 1)
       end
     end
     describe 'method __into__' do
@@ -107,6 +112,67 @@ describe James::State do
         hear 'transition one' => :next_state1
         into { "hi there" }
         exit { "good bye" }
+      end
+    end
+    describe 'phrases' do
+      it '' do
+        assert_equal ['transition one'], state.phrases
+      end
+    end
+    describe 'to_s' do
+      it '' do
+        assert_equal 'James::State(some_name, some_context, {"transition one"=>:next_state1})', state.to_s
+      end
+    end
+    describe 'next_for' do
+      it '' do
+        assert_equal :some_state_object1, state.next_for('transition one')
+      end
+      it '' do
+        assert_nil state.next_for('non-existent')
+      end
+    end
+    describe 'method __into__' do
+      it 'is called' do
+        assert_equal 'hi there', state.__into__
+      end
+    end
+    describe 'method __exit__' do
+      it 'is conditionally called' do
+        assert_equal 'good bye', state.__exit__
+      end
+    end
+  end
+
+  describe 'raise on into/exit ArgumentError' do
+    describe 'into' do
+      it 'raises' do
+        assert_raises ArgumentError do
+          James::State.new :some_name, @context do
+            hear 'transition one' => :next_state1
+            into
+          end
+        end
+      end
+    end
+    describe 'exit' do
+      it 'raises' do
+        assert_raises ArgumentError do
+          James::State.new :some_name, @context do
+            hear 'transition one' => :next_state1
+            exit
+          end
+        end
+      end
+    end
+  end
+
+  describe 'with 1 transition and into and exit (both in text form)' do
+    before do
+      @state ||= James::State.new :some_name, @context do
+        hear 'transition one' => :next_state1
+        into "hi there"
+        exit "good bye"
       end
     end
     describe 'phrases' do

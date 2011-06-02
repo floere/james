@@ -15,12 +15,6 @@ describe James::Visitor do
     it 'works' do
       visitor.reset
     end
-    # it 'calls methods in order' do
-    #   timer.should_receive(:stop).once.with
-    #   visitor.should_receive(:current=).once.with initial
-    #
-    #   visitor.reset
-    # end
     it 'survives a functional test' do
       next_state = MiniTest::Mock.new
       initial.expect :next_for, next_state, ['some phrase']
