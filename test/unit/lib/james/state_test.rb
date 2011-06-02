@@ -36,27 +36,36 @@ describe James::State do
         # Nothing to see here.
       end
     end
+    describe '#<<' do
+      it 'chains the given dialog to this state' do
+        dialog = MiniTest::Mock.new
+
+        dialog.expect :chain_to, nil, [state]
+
+        state << dialog
+      end
+    end
     describe 'phrases' do
-      it '' do
+      it 'has none' do
         assert_equal [], state.phrases
       end
     end
     describe 'to_s' do
-      it '' do
+      it 'is correct' do
         assert_equal 'James::State(some_name, some_context, {})', state.to_s
       end
     end
     describe 'next_for' do
-      it '' do
+      it 'is correct' do
         assert_nil state.next_for('non-existent')
       end
     end
     describe 'expand' do
-      it '' do
+      it 'works correctly' do
         expected = { :a => 1, :b => 1 }
         assert_equal expected, state.expand([:a, :b] => 1)
       end
-      it '' do
+      it 'works correctly' do
         expected = { :a => 1 }
         assert_equal expected, state.expand(:a => 1)
       end

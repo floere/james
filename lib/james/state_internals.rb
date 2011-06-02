@@ -23,15 +23,26 @@ module James
       state.respond_to?(:id2name) ? context.state_for(state) : state
     end
 
-    def __into__
-      @into_block && context.instance_eval(&@into_block)
-    end
-    def __exit__
-      @exit_block && context.instance_eval(&@exit_block)
-    end
-    def __transition__ &block
-      context.instance_eval &block
-    end
+    # The naughty privates.
+    #
+
+      # Called by the visitor visiting this state.
+      #
+      def __into__
+        @into_block && context.instance_eval(&@into_block)
+      end
+
+      # Called by the visitor visiting this state.
+      #
+      def __exit__
+        @exit_block && context.instance_eval(&@exit_block)
+      end
+
+      # Called by the visitor visiting this state.
+      #
+      def __transition__ &block
+        context.instance_eval &block
+      end
 
   end
 

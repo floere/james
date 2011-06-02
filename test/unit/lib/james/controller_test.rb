@@ -20,7 +20,7 @@ describe James::Controller do
   attr_reader :controller
 
   before do
-    @controller ||= James::Controller.new
+    @controller = James::Controller.instance
   end
 
   describe 'listening' do
@@ -36,9 +36,9 @@ describe James::Controller do
   #   it 'delegates' do
   #     visitor = stub! :visitor
   #     controller.stub! :visitor => visitor
-  # 
+  #
   #     visitor.should_receive(:expects).once.with()
-  # 
+  #
   #     controller.expects
   #   end
   # end

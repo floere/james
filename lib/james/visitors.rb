@@ -14,28 +14,47 @@ module James
   #
   # Visitors is a proxy object for visitors.
   #
+  # TODO: Rename to Conversation.
+  #
   class Visitors
 
     attr_reader :visitors
 
-    def initialize *visitors
-      @visitors = visitors
+    # A Visitors keeps a stack of visitors.
+    #
+    def initialize initial
+      @visitors = [initial]
     end
 
     # Hear tries all visitors in order
     # until one hears a phrase he knows.
     #
-    # After that, all remaining visitors are reset.
+    # If a dialog boundary has been crossed:
+    # A new visitor is added with the target
+    # state of that heard phrase at the position.
+    #
+    # After that, all remaining visitors are
+    # removed from the current stack (since
+    # we are obviously not in one of the later
+    # dialogs anymore).
+    #
+    # TODO This code is very smelly.
     #
     def hear phrase, &block
-      enumerator = visitors.dup
+      @visitors = visitors.inject([]) do |visited, visitor|
+        if visitor.hears? phrase
+          waiter = visitor.dup
 
-      while visitor = enumerator.shift
-        visitor.hear phrase, &block and break
-      end
+          visitor.hear phrase, &block
 
-      enumerator.each do |visitor|
-        visitor.reset
+          if visitor.dialog == waiter.dialog
+            break(visited << visitor)
+          else
+            break(visited << waiter << visitor)
+          end
+        else
+          visited << visitor
+        end
       end
     end
 

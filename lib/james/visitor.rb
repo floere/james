@@ -7,6 +7,8 @@ module James
   #
   # Note: A visitor should generally be very stupid.
   #
+  # TODO: Rename to Point.
+  #
   class Visitor
 
     attr_reader   :initial, :timer
@@ -57,13 +59,16 @@ module James
       transition phrase
       check &block
       into_text = enter &block
-      exit_text || into_text
+      current
     end
     def hears? phrase
       expects.include? phrase
     end
     def expects
       current.phrases
+    end
+    def dialog
+      current.context
     end
     # Does the current state allow penetration into another dialog?
     #

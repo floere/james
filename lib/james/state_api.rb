@@ -46,27 +46,39 @@ module James
       @transitions.merge! expand(transitions)
     end
 
-    # Execute this block when entering this state.
+    # Execute this block or say the text when entering this state.
+    #
+    # Examples:
+    #   into "Yes, Sir?"
+    #   into { "A random number is #{rand(10)}" }
     #
     def into text = nil, &block
       @into_block = block ||
                     text && lambda { text } ||
-                    raise(ArgumentError.new("Neither block nor text given to #{self.class}##{__method__} call of #{caller}."))
+                    raise_no_text_or_block(__method__)
     end
 
-    # Execute this block when exiting this state.
+    # Execute this block or say the text when exiting this state.
+    #
+    # Examples:
+    #   exit "Yes, Sir?"
+    #   exit { "A random number is #{rand(10)}" }
     #
     def exit text = nil, &block
       @exit_block = block ||
                     text && lambda { text } ||
-                    raise(ArgumentError.new("Neither block nor text given to #{self.class}##{__method__} call of #{caller}."))
+                    raise_no_text_or_block(__method__)
     end
 
-    # By default, a state is not chainable.
+    # Chain the given dialog to this state.
     #
-    def chainable?
-      !!@chainable
+    def << dialog
+      dialog.chain_to self
     end
+
+    # A chainable state is a state from which other
+    # Dialogs can be reached.
+    #
     def chainable
       @chainable = true
     end
@@ -92,6 +104,18 @@ module James
           end
         end
         results
+      end
+
+      # Raise an ArgumentError for the given method if it needs either a text or a block.
+      #
+      def raise_no_text_or_block on_method
+        raise ArgumentError.new("Neither block nor text given to ##{on_method} call in #{caller[1]}.")
+      end
+
+      # By default, a state is not chainable.
+      #
+      def chainable?
+        !!@chainable
       end
 
   end

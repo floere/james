@@ -10,21 +10,24 @@ module James
       @controller ||= new
     end
 
-    # This puts together the core dialog and the user
+    # This puts together the initial dialog and the user
     # ones that are hooked into it.
     #
-    # TODO Rewrite this. Design needs some refactoring.
-    #      Should the user visitor be created dynamically? (Probably yes.)
+    # The initial dialog needs an state defined as initially.
+    # This is where it will start.
     #
-    def initialize
-      @user_dialogs = Dialogs.new
-      @visitor      = Visitors.new system_visitor, user_visitor
-    end
-    def system_visitor
-      Visitor.new CoreDialog.new.state_for(:awake)
-    end
-    def user_visitor
-      @user_dialogs.visitor
+    # Example:
+    #   initially :awake
+    #   state :awake do
+    #     # ...
+    #   end
+    #
+    # If you don't give it an initial dialog,
+    # James will simply use the built-in CoreDialog.
+    #
+    def initialize initial_dialog = nil
+      @dialog  = initial_dialog || CoreDialog.new
+      @visitor = @dialog.visitor
     end
 
     # MacRuby callback functions.
@@ -37,10 +40,12 @@ module James
       exit
     end
 
-    # Add a dialog to the current system.
+    # Convenience method to add a dialog to the current system.
+    #
+    # Will add the dialog to the initial dialog.
     #
     def add_dialog dialog
-      @user_dialogs << dialog
+      @dialog << dialog
     end
 
     # Start recognizing words.

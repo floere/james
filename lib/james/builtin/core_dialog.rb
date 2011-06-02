@@ -9,6 +9,10 @@ class CoreDialog
 
   include James::Dialog
 
+  # This core dialog starts at awake.
+  #
+  initially :awake
+
   # The alert state.
   # When James is in this state, he should be
   # open for user dialogs.
