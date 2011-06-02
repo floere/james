@@ -1,1 +1,0 @@
-require 'quote_dialog'

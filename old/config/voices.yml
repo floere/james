@@ -1,8 +1,0 @@
-# Commented voices are Apple built-in voices. Can be changed by replacing the last part e.g.'Vicki' with e.g.'Laura'
-# much better female voice from iVox:
-# female: com.acapela.iVox.voice.iVoxHeather22k
-# much better male voice from iVox:
-# male: com.acapela.iVox.voice.iVoxRyan22k
-female: com.apple.speech.synthesis.voice.Vicki
-# male: com.apple.speech.synthesis.voice.Bruce
-male: com.apple.speech.synthesis.voice.Alex

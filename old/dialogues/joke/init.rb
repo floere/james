@@ -1,1 +1,0 @@
-require 'joke_dialog'
