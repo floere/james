@@ -18,6 +18,8 @@ module James
   #
   class Visitors
 
+    require 'set'
+
     attr_reader :visitors
 
     # A Visitors keeps a stack of visitors.
@@ -38,23 +40,10 @@ module James
     # we are obviously not in one of the later
     # dialogs anymore).
     #
-    # TODO This code is very smelly.
-    #
     def hear phrase, &block
-      @visitors = visitors.inject([]) do |visited, visitor|
-        if visitor.hears? phrase
-          waiter = visitor.dup
-
-          visitor.hear phrase, &block
-
-          if visitor.dialog == waiter.dialog
-            break(visited << visitor)
-          else
-            break(visited << waiter << visitor)
-          end
-        else
-          visited << visitor
-        end
+      @visitors = visitors.inject([]) do |remaining, visitor|
+        new_visitor = visitor.hear phrase, &block
+        remaining << new_visitor
       end
     end
 

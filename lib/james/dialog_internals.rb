@@ -53,7 +53,7 @@ module James
 
       def initially state_name
         define_method :visitor do
-          Visitor.new state_for(state_name)
+          Markers::Current.new state_for(state_name)
         end
       end
 

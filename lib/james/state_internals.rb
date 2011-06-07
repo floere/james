@@ -2,18 +2,19 @@ module James
 
   class State
 
-    attr_reader :transitions
-
-    # Returns all possible phrases that lead
-    # away from this state.
+    # Transitions are internal transitions & external transitions.
     #
-    def phrases
+    def transitions
+      @transitions
+    end
+
+    def expects
       transitions.keys
     end
 
     # Returns the next state for the given phrase.
     #
-    # It accesses the context (aka Dialog(ue)) to get a full object state.
+    # It accesses the context (aka Dialog) to get a full object state.
     #
     # If it is a Symbol, James will try to get the real state.
     # If not, it will just return it (a State already, or lambda).

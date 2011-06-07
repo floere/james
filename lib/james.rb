@@ -3,7 +3,9 @@ module James; end
 require File.expand_path '../james/state_api', __FILE__
 require File.expand_path '../james/state_internals', __FILE__
 
-require File.expand_path '../james/visitor', __FILE__
+require File.expand_path '../james/markers/marker', __FILE__
+require File.expand_path '../james/markers/current', __FILE__
+require File.expand_path '../james/markers/memory', __FILE__
 require File.expand_path '../james/visitors', __FILE__
 
 require File.expand_path '../james/dialog_api', __FILE__

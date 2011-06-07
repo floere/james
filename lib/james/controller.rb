@@ -27,7 +27,7 @@ module James
     #
     def initialize initial_dialog = nil
       @dialog  = initial_dialog || CoreDialog.new
-      @visitor = @dialog.visitor
+      @visitor = Visitors.new @dialog.visitor
     end
 
     # MacRuby callback functions.
