@@ -45,7 +45,30 @@ Here, he will just say the current time when entering the @:time@ state.
 
 h3. Running it
 
-Running it is easy. Either use
+Running it is easy. There are multiple options:
+
+In the terminal, just call
+
+<pre><code>$ james time_dialog.rb twitter_dialog.rb</code></pre>
+
+and it will include the named dialogs, @time_dialog.rb@, @twitter_dialog.rb@.
+
+Or a bit snappier
+
+<pre><code>$ james {time,twitter}*.rb</code></pre>
+
+to do the same as above.
+
+There is also a shortcut:
+
+<pre><code>$ james</code></pre>
+
+equals
+
+<pre><code>$ james **/*_dialog.rb</code></pre>
+
+
+Or do it programmatically:
 
 <pre><code>require 'rubygems'
 require 'james'
@@ -58,27 +81,13 @@ James.listen</code></pre>
 
 in your script, and call it by using
 
-<pre><code>ruby time_dialog.rb</code></pre>
+<pre><code>$ ruby time_dialog.rb</code></pre>
 
-Or, without the @James.listen@, use @ruby -rexamples/your_dialog.rb -e "James.listen"@ in the command line.
+Or, without the @James.listen@, use
 
-Or else, in the terminal, just call
+<pre><code>$ ruby -rexamples/your_dialog.rb -rexamples/your_other_dialog.rb -e "James.listen"</code></pre>
 
-<pre><code>$ james</code></pre>
-
-and it will include all dialogs (files called @_dialog{ue,}.rb@, the @ue@ is for the brits and aussies :) ) in this directory and subdirectories. E.g. @joke_dialog.rb@, @newsfeed_dialog.rb@, or @social_media/tweets_dialog.rb@.
-
-You can select dialogs using their file names
-
-<pre><code>$ james time_dialog.rb twitter_dialog.rb</code></pre>
-
-and it will include the time dialog and the twitter dialog.
-
-Or a bit snappier
-
-<pre><code>$ james {time,twitter}*.rb</code></pre>
-
-to do the same as above.
+on the command line.
 
 h3. Short Version
 
@@ -94,6 +103,8 @@ There is a short, anonymous dialog version, using @James.use_dialog@.
   end
 
 end</code></pre>
+
+@James.use_dialog@ will directly create a dialog instance from your definitions in the block and plug it into James.
 
 h3. Extended Version
 
@@ -115,6 +126,7 @@ class TwitterDialog
     hear 'Who mentions me?' => :mentions
     into do
       # Complicated feed loading
+      #
       "People are saying this: #{@client.newsfeed(10).join(' ... ')}"
     end
   end
@@ -136,7 +148,6 @@ James.listen</code></pre>
 h2. Contributions
 
 Contributions are in the "/examples":http://github.com/floere/james/tree/master/examples folder.
-Sending dialog gists is appreciated. Thanks!
 
 After forking, in the james directory, run @./bin/james examples/time_dialog.rb@ to have your first successful experience! :)
 
@@ -146,8 +157,7 @@ h2. Running the tests
 
 h2. Roadmap
 
-* Make James (e.g. voice, core dialog) configurable.
-* Add more useful dialogs made by YOU :)
+* Add dialogs made by YOU :)
 
 h2. Ideas
 
