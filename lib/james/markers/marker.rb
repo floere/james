@@ -46,7 +46,9 @@ module James
         def transition phrase
           state_or_lambda = current.next_for phrase
           if state_or_lambda.respond_to?(:call)
-            current.__transition__ &state_or_lambda # Don't transition.
+            result = current.__transition__ &state_or_lambda # Don't transition.
+            yield result if result && block_given?
+            result
           else
             self.current = state_or_lambda
           end
@@ -63,7 +65,7 @@ module James
         def process phrase, &block
           exit_text = exit &block
           last_context = current.context
-          transition phrase
+          transition phrase, &block
           check &block
           into_text = enter &block
           last_context != current.context
