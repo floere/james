@@ -224,12 +224,12 @@ describe James::State do
     end
     describe 'phrases' do
       it '' do
-        assert_equal ['transition one', 'transition two', 'transition three'], state.expects
+        assert_equal ['transition three', 'transition one', 'transition two'], state.expects
       end
     end
     describe 'to_s' do
       it '' do
-        assert_equal 'James::State(some_name, some_context, {"transition one"=>:next_state1, "transition two"=>:next_state2, "transition three"=>:next_state3})', state.to_s
+        assert_equal 'James::State(some_name, some_context, {"transition three"=>:next_state3, "transition one"=>:next_state1, "transition two"=>:next_state2})', state.to_s
       end
     end
     it '' do

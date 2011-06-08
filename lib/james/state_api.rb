@@ -43,7 +43,7 @@ module James
     #
     def hear transitions
       transitions = { transitions => name } unless transitions.respond_to?(:to_hash)
-      @transitions = @transitions.merge expand(transitions)
+      @transitions = expand(transitions).merge @transitions
     end
 
     # Execute this block or say the text when entering this state.
