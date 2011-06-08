@@ -1,3 +1,8 @@
+h2. Version 0.2
+
+* hanke: Rewrite of internals. Complex dialogs or injecting your own core (starting) dialog now possible.
+* hanke: States now accessible from dialog through instance method. E.g. @state.welcome@ exists if a @state :welcome do ...@ has been defined.
+
 h2. Version 0.1.1
 
 * hanke: @james@ command line includes options @-s@ (silent input/output), @-si@ (silent input) and @-so@ (silent output). @-s@ is equal to @-si -so@.
