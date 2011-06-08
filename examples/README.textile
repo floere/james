@@ -8,7 +8,7 @@ They should always be of the form:
 # require 'james'
 require File.expand_path '../../lib/james', __FILE__
 
-James.use_dialog do
+James.dialog do
 
   # You dialog definitions go here.
 

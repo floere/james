@@ -23,7 +23,7 @@ All examples can be found in "/examples":http://github.com/floere/james/tree/mas
 
 Create a file called @time_dialog.rb@:
 
-<pre><code>James.use_dialog do
+<pre><code>James.dialog do
 
   hear 'what time is it?' => :time
 
@@ -37,7 +37,7 @@ end</code></pre>
 
 This says that if James hears (@hear@) @"What time is it?"@ that it should enter this conversation into state @:time@.
 
-If he then hears "What time is it?" again, it will return to state @:time@.
+If he then hears @"What time is it?"@ again, it will return to state @:time@.
 
 When he enters (@into@), James executes the block in the dialog's context. Whatever is returned from the block, James will say out lout. Everything else he will just think. (So it's like Sinatra in rendering, just that James renders audio)
 
@@ -91,9 +91,9 @@ on the command line.
 
 h3. Short Version
 
-There is a short, anonymous dialog version, using @James.use_dialog@.
+There is a short, anonymous dialog version, using @James.dialog@.
 
-<pre><code>James.use_dialog do
+<pre><code>James.dialog do
 
   hear 'what time is it?' => :time
 
@@ -104,7 +104,7 @@ There is a short, anonymous dialog version, using @James.use_dialog@.
 
 end</code></pre>
 
-@James.use_dialog@ will directly create a dialog instance from your definitions in the block and plug it into James.
+@James.dialog@ will directly create a dialog instance from your definitions in the block and plug it into James.
 
 h3. Extended Version
 

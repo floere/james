@@ -13,7 +13,7 @@ require File.expand_path '../../lib/james', __FILE__
 #
 # How could you enhance it to answer "What date is it?" ?
 #
-James.use_dialog do
+James.dialog do
 
   hear 'Open iTunes and play' => :itunes
 

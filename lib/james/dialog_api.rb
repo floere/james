@@ -4,7 +4,7 @@ module James
   #
   # The simple way will directly add itself to James.
   #
-  # James.use_dialog(optional_args_for_initialize) do
+  # James.dialog(optional_args_for_initialize) do
   #   # Your dialog.
   #   #
   # end
@@ -26,7 +26,7 @@ module James
 
   class << self
 
-    def use_dialog *args, &block
+    def dialog *args, &block
       dialog = Class.new { include James::Dialog }
       dialog.class_eval &block
       use dialog.new(*args)

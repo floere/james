@@ -13,7 +13,7 @@ require File.expand_path '../../lib/james', __FILE__
 #
 # Improve the jokes ;)
 #
-James.use_dialog do
+James.dialog do
 
   hear 'Tell me a joke' => :joke
 
