@@ -13,7 +13,6 @@ require File.expand_path '../james/dialog_internals', __FILE__
 
 require File.expand_path '../james/dialogs', __FILE__
 
-require File.expand_path '../james/inputs', __FILE__
 require File.expand_path '../james/inputs/base', __FILE__
 require File.expand_path '../james/inputs/audio', __FILE__
 require File.expand_path '../james/inputs/terminal', __FILE__
