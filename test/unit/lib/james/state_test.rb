@@ -47,7 +47,7 @@ describe James::State do
     end
     describe 'phrases' do
       it 'has none' do
-        assert_equal [], state.phrases
+        assert_equal [], state.expects
       end
     end
     describe 'to_s' do
@@ -108,9 +108,9 @@ describe James::State do
         hear 'transition one' => lambda { "I do this and return to :some_name" }
       end
     end
-    describe 'phrases' do
+    describe 'expects' do
       it '' do
-        assert_equal ['transition one'], state.phrases
+        assert_equal ['transition one'], state.expects
       end
     end
   end
@@ -125,7 +125,7 @@ describe James::State do
     end
     describe 'phrases' do
       it '' do
-        assert_equal ['transition one'], state.phrases
+        assert_equal ['transition one'], state.expects
       end
     end
     describe 'to_s' do
@@ -186,7 +186,7 @@ describe James::State do
     end
     describe 'phrases' do
       it '' do
-        assert_equal ['transition one'], state.phrases
+        assert_equal ['transition one'], state.expects
       end
     end
     describe 'to_s' do
@@ -224,7 +224,7 @@ describe James::State do
     end
     describe 'phrases' do
       it '' do
-        assert_equal ['transition one', 'transition two', 'transition three'], state.phrases
+        assert_equal ['transition one', 'transition two', 'transition three'], state.expects
       end
     end
     describe 'to_s' do
@@ -252,7 +252,7 @@ describe James::State do
     end
     describe 'phrases' do
       it '' do
-        assert_equal ['transition one'], state.phrases
+        assert_equal ['transition one'], state.expects
       end
     end
     describe 'to_s' do

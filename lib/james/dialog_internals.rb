@@ -14,7 +14,7 @@ module James
     # Note: Lazily creates the state instances.
     #
     def state_for possible_state
-      return possible_state if possible_state.respond_to?(:phrases)
+      return possible_state if possible_state.respond_to?(:expects)
       self.class.state_for possible_state, self
     end
 
@@ -52,7 +52,7 @@ module James
     module ClassMethods
 
       def initially state_name
-        define_method :visitor do
+        define_method :current do
           Markers::Current.new state_for(state_name)
         end
       end

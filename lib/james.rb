@@ -6,7 +6,7 @@ require File.expand_path '../james/state_internals', __FILE__
 require File.expand_path '../james/markers/marker', __FILE__
 require File.expand_path '../james/markers/current', __FILE__
 require File.expand_path '../james/markers/memory', __FILE__
-require File.expand_path '../james/visitors', __FILE__
+require File.expand_path '../james/conversation', __FILE__
 
 require File.expand_path '../james/dialog_api', __FILE__
 require File.expand_path '../james/dialog_internals', __FILE__
@@ -32,12 +32,10 @@ module James
   # If called twice or more, will just add more dialogs.
   #
   def self.use *dialogs
-    dialogs.each { |dialog| controller.add_dialog dialog }
+    dialogs.each { |dialog| controller << dialog}
   end
 
   # Start listening.
-  #
-  # Will not listen again if already listening.
   #
   def self.listen options
     controller.listen options

@@ -59,6 +59,12 @@ describe James::Dialog do
       end.new
     end
 
+    describe '#first' do
+      it 'works' do
+        assert_equal :first, dialog.first.name
+      end
+    end
+
     describe '.states' do
       it 'is correct' do
         expected = { :first => dialog.class.states[:first], :second => dialog.class.states[:second] }

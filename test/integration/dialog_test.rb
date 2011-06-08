@@ -24,7 +24,7 @@ describe 'TestDialog' do
         end
       end.new
 
-      @visitor = James::Visitor.new dialog.state_for(:first)
+      @visitor = James::Markers::Current.new dialog.state_for(:first)
     end
 
     describe "integration" do
@@ -54,7 +54,7 @@ describe 'TestDialog' do
         end
       end.new
 
-      @visitor = James::Visitor.new dialog.state_for(:first)
+      @visitor = James::Markers::Current.new dialog.state_for(:first)
     end
     it 'works correctly' do
       assert_equal :first, visitor.current.name
