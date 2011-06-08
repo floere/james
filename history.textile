@@ -1,8 +1,12 @@
-h2. Version 0.3
+h2. Version 0.4.0
+
+* hanke: In-state transitions defined using @hear 'Some Phrase' => ->(){ "I will be spoken on hearing 'Some Phrase'" }@.
+
+h2. Version 0.3.0
 
 * hanke: Renamed @James.use_dialog@ -> @James.dialog@, since it is clear what it does.
 
-h2. Version 0.2
+h2. Version 0.2.0
 
 * hanke: Rewrite of internals. Complex dialogs or injecting your own core (starting) dialog now possible.
 * hanke: States now accessible from dialog through instance method. E.g. @state.welcome@ exists if a @state :welcome do ...@ has been defined.
