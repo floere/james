@@ -1,0 +1,1 @@
+module Inputs; end

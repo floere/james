@@ -15,13 +15,19 @@ module James
         # Returns itself if not.
         #
         def hear phrase, &block
-          process(phrase, &block) ? Current.new(current) : self
+          return [self] unless hears? phrase
+          last = current
+          process(phrase, &block) ? [Memory.new(last), Current.new(current)] : [Current.new(current)]
         end
 
         # A marker does not care about phrases that cross dialog boundaries.
         #
         def expects
-          current.internal
+          current.internal_expects
+        end
+
+        def current?
+          false
         end
 
       end

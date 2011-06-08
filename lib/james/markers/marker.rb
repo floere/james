@@ -55,15 +55,18 @@ module James
         #
         #
         def check
-          reset && yield("Whoops. That led nowhere. Perhaps you didn't define the target state?") unless self.current
+          yield("Whoops. That led nowhere. Perhaps you didn't define the target state?") unless self.current
         end
 
+        # Returns falsy if it stays the same.
+        #
         def process phrase, &block
-          return unless hears? phrase
           exit_text = exit &block
+          last_context = current.context
           transition phrase
           check &block
           into_text = enter &block
+          last_context != current.context
         end
 
         #

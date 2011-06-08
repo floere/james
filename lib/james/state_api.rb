@@ -24,10 +24,7 @@ module James
       @name    = name
       @context = context
 
-      # Transitions.
-      #
-      @external = {}
-      @internal = {}
+      @transitions = {}
 
       instance_eval(&Proc.new) if block_given?
     end
@@ -46,7 +43,7 @@ module James
     #
     def hear transitions
       transitions = { transitions => name } unless transitions.respond_to?(:to_hash)
-      @internal = expand(transitions).merge @internal
+      @transitions = expand(transitions).merge @transitions
     end
 
     # Execute this block or say the text when entering this state.
@@ -89,7 +86,7 @@ module James
     # Description of self using name and transitions.
     #
     def to_s
-      "#{self.class.name}(#{name}, #{context}, Internal: #{internal})"
+      "#{self.class.name}(#{name}, #{context}, #{expects})"
     end
 
     # The naughty privates of this class.

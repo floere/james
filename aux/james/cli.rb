@@ -6,7 +6,7 @@ module James
 
     def execute *patterns
       options = extract_options patterns
-      
+
       dialogs = find_dialogs_for patterns
 
       puts "James: I haven't found anything to talk about (No files found). Exiting." or exit!(1) if dialogs.empty?
@@ -16,7 +16,7 @@ module James
 
       James.listen options
     end
-    
+
     # Defines default options and extracts options from
     # command line.
     #
@@ -26,21 +26,21 @@ module James
       silent        = patterns.delete '-s'
       silent_input  = patterns.delete '-si'
       silent_output = patterns.delete '-so'
-      
+
       options = {}
       options[:input]  = Inputs::Terminal  if silent || silent_input
       options[:output] = Outputs::Terminal if silent || silent_output
-      
+
       options
     end
-    
+
     #
     #
     def find_dialogs_for patterns
       patterns = ["**/*_dialog{,ue}.rb"] if patterns.empty?
       Dir[*patterns]
     end
-    
+
     #
     #
     def load_all dialogs

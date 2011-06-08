@@ -6,22 +6,25 @@ module James
     #
     class Current < Marker
 
-      attr_reader :initial
-
       # Hear a phrase.
       #
-      # Returns a new marker if it crossed a boundary.
+      # Returns a new marker and self if it crossed a boundary.
       # Returns itself if not.
       #
       def hear phrase, &block
+        return [self] unless hears? phrase
         last = current
-        process(phrase, &block) ? Memory.new(last) : self
+        process(phrase, &block) ? [Memory.new(last), self] : [self]
       end
 
       # Expects all phrases, not just internal.
       #
       def expects
         current.expects
+      end
+
+      def current?
+        true
       end
 
     end

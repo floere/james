@@ -8,9 +8,18 @@ module James
       @transitions
     end
 
+    #
+    #
     def expects
       transitions.keys
     end
+
+    #
+    #
+    def internal_expects
+      transitions.select { |phrase, target| target.respond_to?(:to_sym) || target == self.context }.keys
+    end
+
 
     # Returns the next state for the given phrase.
     #

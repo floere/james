@@ -18,8 +18,6 @@ module James
   #
   class Visitors
 
-    require 'set'
-
     attr_reader :visitors
 
     # A Visitors keeps a stack of visitors.
@@ -42,8 +40,10 @@ module James
     #
     def hear phrase, &block
       @visitors = visitors.inject([]) do |remaining, visitor|
-        new_visitor = visitor.hear phrase, &block
-        remaining << new_visitor
+        markers = visitor.hear phrase, &block
+        remaining = remaining + markers
+        break remaining if remaining.last.current?
+        remaining
       end
     end
 

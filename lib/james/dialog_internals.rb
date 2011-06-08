@@ -78,6 +78,9 @@ module James
       def state name, &block
         @states       ||= {}
         @states[name] ||= block if block_given?
+        define_method name do
+          state_for name
+        end unless instance_methods.include? name
       end
 
       #
