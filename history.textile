@@ -1,6 +1,7 @@
 h2. Version 0.4.0
 
-* hanke: In-state transitions defined using @hear 'Some Phrase' => ->(){ "I will be spoken on hearing 'Some Phrase'" }@.
+* hanke: In-state transitions defined using @hear 'Some Phrase' => ->(){ "I will be spoken on hearing 'Some Phrase'" }@ will speak the returned text out loud.
+* hanke: Audio output waits for a sentence to be finished until the next is spoken.
 
 h2. Version 0.3.0
 
