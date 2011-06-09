@@ -47,7 +47,9 @@ h3. Running it
 
 Running it is easy. There are multiple options:
 
-In the terminal, just call
+h4. Using the james command
+
+This is easiest. In the terminal, just call
 
 <pre><code>$ james time_dialog.rb twitter_dialog.rb</code></pre>
 
@@ -59,16 +61,13 @@ Or a bit snappier
 
 to do the same as above.
 
-There is also a shortcut:
+Options are: @-si@ (silent input), @-so@ (silent output), @-s@ (both).
 
-<pre><code>$ james</code></pre>
+<pre><code>$ james -s time_dialog.rb</code></pre>
 
-equals
+for example will use audio for neither input nor output.
 
-<pre><code>$ james **/*_dialog.rb</code></pre>
-
-
-Or do it programmatically:
+h4. Programmatically
 
 <pre><code>require 'rubygems'
 require 'james'
