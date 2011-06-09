@@ -7,7 +7,7 @@ h2. Installation
 @gem install james@ OS X only, MacRuby needed.
 (Install MacRuby using @rvm install macruby@)
 
-h2. Get James talking!
+h2. Getting Started: Get James talking!
 
 Create a file called @time_dialog.rb@. Copy this
 
