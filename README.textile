@@ -4,8 +4,7 @@ A voice controlled electronic butler.
 
 h2. Installation
 
-@gem install james@ OS X only, MacRuby needed.
-(Install MacRuby using @rvm install macruby@)
+@gem install james@ (OS X only, MacRuby needed; Install MacRuby using @rvm install macruby@)
 
 h2. Getting Started: Get James talking!
 
