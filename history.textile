@@ -1,3 +1,7 @@
+h2. Version 0.5.0
+
+* hanke: Removed Gemspec platform specification.
+
 h2. Version 0.4.0
 
 * hanke: In-state transitions defined using @hear 'Some Phrase' => ->(){ "I will be spoken on hearing 'Some Phrase'" }@ will speak the returned text out loud.
