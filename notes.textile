@@ -5,5 +5,4 @@ Apple voices:
 Can be changed by replacing the last part e.g.'Vicki' with e.g.'Laura'
 
 Much better voices from iVox:
-* female: com.acapela.iVox.voice.iVoxHeather22k
-* male: com.acapela.iVox.voice.iVoxRyan22k
+* female: com.acapelagroup.AGix.voice.Rachel22k_HQ
