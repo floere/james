@@ -44,7 +44,7 @@ class CoreDialog
   #
   state :exit do
     into do
-      puts "James: Exits through a side door."
+      puts "James exits through a side door."
       Kernel.exit
     end
   end
