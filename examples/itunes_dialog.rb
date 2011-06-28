@@ -8,27 +8,26 @@ require File.expand_path '../../lib/james', __FILE__
 #
 # This is a very simple James example.
 #
-# It has only one state, :time, and a single
-# entry/hook phrase, "What time is it?"
-#
-# How could you enhance it to answer "What date is it?" ?
-#
 James.dialog do
 
-  hear 'Open iTunes and play' => :itunes
+  hear "How about some music?" => :itunes
 
   state :itunes do
-    hear 'Next track' => ->() do
-      `osascript -e 'tell application "iTunes"' -e "next track" -e "end tell"`
-      "Playing next track, Sir."
-    end
     hear 'Previous track' => ->() do
       `osascript -e 'tell application "iTunes"' -e "previous track" -e "end tell"`
-      "Playing previous track, Sir."
+      "Going to previous track, Sir."
     end
-    into do
+    hear 'Next track' => ->() do
+      `osascript -e 'tell application "iTunes"' -e "next track" -e "end tell"`
+      "Going to next track, Sir."
+    end
+    hear 'Stop track' => ->() do
+      `osascript -e 'tell application "iTunes" to stop'`
+      "Stopping current track, Sir."
+    end
+    hear 'Play track' => ->() do
       `osascript -e 'tell application "iTunes" to play'`
-      "Opening i Tunes, Sir."
+      "Playing current track, Sir."
     end
   end
 
