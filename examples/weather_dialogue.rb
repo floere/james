@@ -11,11 +11,6 @@ require 'barometer'
 #
 # This is a very simple James example.
 #
-# Note: Currently it just a stub.
-#
-# Note 2: We need to enable Dialog passing to James.use
-#         to make dialogs configurable a la WeatherDialog.for("Paris").
-#
 class WeatherDialog
 
   include James::Dialog

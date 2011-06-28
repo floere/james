@@ -16,7 +16,7 @@ James.dialog do
         # Run a thread that sleeps i hours.
         #
         Thread.new do
-          sleep i
+          sleep i*3600
           James.controller.say "Hi, this is James, you set a reminder #{i} hours ago, so I am reminding you! "*3
         end
 

@@ -21,7 +21,7 @@ James.dialog do
     hear ['What time is it?', 'What time is it now?']
     into do
       time = Time.now
-      "It is currently #{time.hour} #{time.min}."
+      "It is currently #{time.hour}:#{time.min}."
     end
   end
 

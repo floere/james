@@ -7,10 +7,10 @@ module James
       # Create a new audio output.
       #
       # Options:
-      #  * voice # Default is 'com.apple.speech.synthesis.voice.Alex'.
+      #  * preferences # A James::Preferences
       #
-      def initialize options = {}
-        @output = NSSpeechSynthesizer.alloc.initWithVoice options[:voice] || 'com.apple.speech.synthesis.voice.Alex'
+      def initialize preferences
+        @output = NSSpeechSynthesizer.alloc.initWithVoice preferences.voice
       end
 
       # Say the given text out loud.

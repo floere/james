@@ -38,4 +38,4 @@ class StocksDialog
 
 end
 
-James.use StocksDialog.new('AAPL', 'IBM')
+James.use StocksDialog.new('IBM', 'AAPL')

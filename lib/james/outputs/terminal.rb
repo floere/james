@@ -8,7 +8,7 @@ module James
 
       #
       #
-      def initialize options = {}
+      def initialize preferences = nil
 
       end
 

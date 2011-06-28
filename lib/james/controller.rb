@@ -28,6 +28,7 @@ module James
     def initialize dialog = nil
       @initial      = dialog || CoreDialog.new
       @conversation = Conversation.new @initial.current
+      @preferences  = James::Preferences.new
     end
 
     # Convenience method to add a dialog to the current system.
@@ -52,9 +53,6 @@ module James
 
       @input_class    = options[:input]  || Inputs::Audio
       @output_class   = options[:output] || Outputs::Audio
-
-      @output_options ||= {}
-      @output_options[:voice] = options[:voice] || 'com.apple.speech.synthesis.voice.Alex'
 
       app = NSApplication.sharedApplication
       app.delegate = self
@@ -84,7 +82,7 @@ module James
       # Start speaking.
       #
       def start_output
-        @output = @output_class.new @output_options
+        @output = @output_class.new @preferences
       end
 
       # Callback method from dialog.
