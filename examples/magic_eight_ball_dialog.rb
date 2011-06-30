@@ -43,7 +43,8 @@ James.dialog do
     ]
   end
 
-  hear 'Shake the eight ball' => :shake
+  hear 'Shake the eight ball' => :shake,
+       'I have a question'    => :shake
 
   state :shake do
     hear ['Shake the eight ball', 'Again']

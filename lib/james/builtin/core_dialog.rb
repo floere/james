@@ -9,9 +9,9 @@ class CoreDialog
 
   include James::Dialog
 
-  # This core dialog starts at awake.
+  # This core dialog starts at away.
   #
-  initially :awake
+  initially :away
 
   # The alert state.
   # When James is in this state, he should be
@@ -24,6 +24,9 @@ class CoreDialog
     chainable
 
     hear "Thank you, James."              => :awake,
+         "Thanks for that, James."        => :awake,
+         "Thank you."                     => :awake,
+         "Go back."                       => :awake,
          'I need some time alone, James.' => :away,
          "Good night, James."             => :exit
     into { "Sir?" }
@@ -34,8 +37,9 @@ class CoreDialog
   # or the good night, i.e. exit phrase.
   #
   state :away do
-    hear 'James?'             => :awake,
-         "Good night, James." => :exit
+    hear 'James?'                => :awake,
+         'Are you there, James?' => :awake,
+         "Good night, James."    => :exit
     into { "Of course, Sir!" }
   end
 
