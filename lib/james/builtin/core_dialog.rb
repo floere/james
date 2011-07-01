@@ -24,8 +24,6 @@ class CoreDialog
     chainable
 
     hear "Thank you, James."              => :awake,
-         "Thanks for that, James."        => :awake,
-         "Thank you."                     => :awake,
          "Go back."                       => :awake,
          'I need some time alone, James.' => :away,
          "Good night, James."             => :exit

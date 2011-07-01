@@ -47,7 +47,7 @@ James.dialog do
        'I have a question'    => :shake
 
   state :shake do
-    hear ['Shake the eight ball', 'Again']
+    hear ['Shake the eight ball', 'I have another question', 'Again']
     into do
       states[rand(states.size)]
     end
