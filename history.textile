@@ -1,3 +1,8 @@
+h2. Version 0.7.0
+
+* hanke: Added "Go back" as an alias for "Thanks, James". (Better recognition)
+* hanke: James now starts in the away state. So an "Are you there, James?" or "James?" is needed to get him to the attentive state where he answers questions etc.
+
 h2. Version 0.6.0
 
 * hanke: Added preference .james file. Currently, it supports one option, @voice@, e.g. the file could contain @voice: "com.acapelagroup.AGix.voice.Peter22k_HQ"@. The preferences are handled in this order:
