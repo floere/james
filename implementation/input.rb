@@ -1,3 +1,5 @@
+framework 'AppKit'
+
 recognizer = NSSpeechRecognizer.alloc.init
 recognizer.setDelegate self
 def speechRecognizer sender, didRecognizeCommand: command
