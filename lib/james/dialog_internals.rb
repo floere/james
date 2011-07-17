@@ -76,7 +76,7 @@ module James
       #   end
       #
       def state name, &block
-        @states       ||= {}
+        @states       ||= {} # Move to initializer.
         @states[name] ||= block if block_given?
         define_method name do
           state_for name

@@ -6,11 +6,11 @@ require File.expand_path '../../lib/james', __FILE__
 
 James.dialog do
 
-  hear 'James, I am going to close you now.' => :dave
+  hear 'Open the door.' => :sorry
 
-  state :dave do
+  state :sorry do
     into do
-      "I'm sorry Dave, I can't let you do that."
+      "I'm sorry Dave. I'm afraid I can't do that."
     end
   end
 

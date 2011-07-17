@@ -44,7 +44,8 @@ James.dialog do
   end
 
   hear 'Shake the eight ball' => :shake,
-       'I have a question'    => :shake
+       'I have a question'    => :shake,
+       'What do you think?'   => :shake
 
   state :shake do
     hear ['Shake the eight ball', 'I have another question', 'Again']
