@@ -46,6 +46,8 @@ James consists of dialogs that are modeled as state machines. You navigate throu
 
 He will then take action (looking up timetables, checking the weather etc.) and inform you. Or maybe just tell a joke.
 
+If James is having difficulty understanding you, then you may need to calibrate the microphone or adjust other speech recognition settings. Open System Preferences and go to the Speech section, you should see a "Calibrate" button next to the option of which microphone to use.
+
 h2. Running James
 
 Running it is easy. There are multiple options:
