@@ -39,7 +39,7 @@ module James
 
   # Start listening.
   #
-  def self.listen options
+  def self.listen options = {}
     controller.listen options
   end
 
