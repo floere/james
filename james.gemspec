@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   # s.platform = ['universal', 'darwin', nil]
 
   s.name = 'james'
-  s.version = '0.7.0'
+  s.version = '0.7.1'
 
   s.author = 'Florian Hanke'
   s.email = 'florian.hanke+james@gmail.com'
