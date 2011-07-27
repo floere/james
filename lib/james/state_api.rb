@@ -27,6 +27,8 @@ module James
       @transitions = {}
 
       instance_eval(&Proc.new) if block_given?
+
+      self
     end
 
     # How do I get from this state to another?
